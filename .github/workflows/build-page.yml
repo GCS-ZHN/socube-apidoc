@@ -35,3 +35,28 @@ jobs:
           name: build_${{ steps.version.outputs.replaced }}
           path: build/*
           retention-days: 1
+
+  gh-pages:
+    needs: ["build"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get version
+        id: version
+        uses: frabert/replace-string-action@v2
+        with:
+          pattern: 'refs/tags/v(.+)'
+          string: ${{ github.ref }}
+          replace-with: 'v$1'
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: build_${{ steps.version.outputs.replaced }}
+          path: build/
+      - name: Push to gh-pages
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          build_dir: build/html
