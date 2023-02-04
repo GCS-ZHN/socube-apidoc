@@ -1,0 +1,34 @@
+name: "build-page"
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build Sphinx Project
+        uses: ammaraskar/sphinx-action@master
+        with:
+          docs-folder: ${{ github.workspace }}
+
+      - name: Get version
+        id: version
+        uses: frabert/replace-string-action@v2
+        with:
+          pattern: 'refs/tags/v(.+)'
+          string: ${{ github.ref }}
+          replace-with: 'v$1'
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build_${{ steps.version.outputs.replaced }}
+          path: build/*
+          retention-days: 1
