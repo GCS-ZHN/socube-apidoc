@@ -1,0 +1,3 @@
+[submodule "socube"]
+	path = socube
+	url = git@github.com:GCS-ZHN/socube.git
