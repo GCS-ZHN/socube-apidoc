@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>socube.utils package &mdash; SoCube 1.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SoCube
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">socube.utils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-socube.utils.concurrence">socube.utils.concurrence module</a></li>
+<li><a class="reference internal" href="#module-socube.utils.context">socube.utils.context module</a></li>
+<li><a class="reference internal" href="#module-socube.utils.exception">socube.utils.exception module</a></li>
+<li><a class="reference internal" href="#module-socube.utils.io">socube.utils.io module</a></li>
+<li><a class="reference internal" href="#module-socube.utils.logging">socube.utils.logging module</a></li>
+<li><a class="reference internal" href="#module-socube.utils.mail">socube.utils.mail module</a></li>
+<li><a class="reference internal" href="#module-socube.utils.memory">socube.utils.memory module</a></li>
+<li><a class="reference internal" href="#module-socube.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SoCube</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">socube.utils package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/socube.utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="socube-utils-package">
+<h1>socube.utils package<a class="headerlink" href="#socube-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-socube.utils.concurrence">
+<span id="socube-utils-concurrence-module"></span><h2>socube.utils.concurrence module<a class="headerlink" href="#module-socube.utils.concurrence" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.utils.concurrence.parallel">
+<code class="sig-prename descclassname">socube.utils.concurrence.</code><code class="sig-name descname">parallel</code><span class="sig-paren">(</span><em class="sig-param">func</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.concurrence.parallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>A decorator for asynchronous method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>Callable</em>) – The function to be decorated as asynchronous.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>a new function. If it is called under ParallelManager, it will be</em></p></li>
+<li><p><em>executed in a process pool.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nd">@parallel</span>
+<span class="go">    def func(*args, **kwargs):</span>
+<span class="go">        ...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parallelFunc</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.utils.concurrence.ParallelManager">
+<em class="property">class </em><code class="sig-prename descclassname">socube.utils.concurrence.</code><code class="sig-name descname">ParallelManager</code><span class="sig-paren">(</span><em class="sig-param">verbose: bool = False</em>, <em class="sig-param">max_workers: int = 8</em>, <em class="sig-param">paral_type: str = 'thread'</em>, <em class="sig-param">raise_error: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.concurrence.ParallelManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.utils.context.ContextManagerBase" title="socube.utils.context.ContextManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.utils.context.ContextManagerBase</span></code></a></p>
+<p>A context manager for multi-thread. In this context, Multiple thread is enable
+will be set as True and enable multi-thread for function decorated with <cite>parallel</cite>.
+Multi-level nesting is allowed, and each level has an independent asynchronous
+task pool. When exiting the context, it will wait for the tasks in the current
+asynchronous task pool to complete.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print log.</p></li>
+<li><p><strong>max_workers</strong> (<em>int</em>) – The maximum number of workers in the asynchronous task pool.</p></li>
+<li><p><strong>paral_type</strong> (<em>str</em>) – The type of asynchronous task pool. Only support “thread” and “process”.</p></li>
+<li><p><strong>raise_error</strong> (<em>bool</em>) – Whether to raise error when the task is not completed. Default is True.
+If you do not want interrupt the program, set it to False.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">ThreadManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">tm</span><span class="p">:</span>
+<span class="go">        # Here is you code</span>
+<span class="go">        asynFunc1(*args)  # this function is decorated with `parallel`</span>
+<span class="go">        with tm:</span>
+<span class="go">            asynFunc2(*args)  # this function is decorated with `parallel`</span>
+<span class="go">        print(&quot;asynFunc2 finished&quot;) # this code will not be executed util asynFunc2 finished.</span>
+<span class="go">    print(&quot;asynFunc1 finished&quot;)  # this code will not be executed util asynFunc1finished.</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.utils.concurrence.ParallelManager.submit">
+<code class="sig-name descname">submit</code><span class="sig-paren">(</span><em class="sig-param">func: Callable</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; concurrent.futures._base.Future<a class="headerlink" href="#socube.utils.concurrence.ParallelManager.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a task to the asynchronous task pool.
+For muti-thread task, you can use <cite>parallel</cite> decorator instead.
+But it not support multi-process task.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils.context">
+<span id="socube-utils-context-module"></span><h2>socube.utils.context module<a class="headerlink" href="#module-socube.utils.context" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.utils.context.ContextManagerBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.utils.context.</code><code class="sig-name descname">ContextManagerBase</code><a class="headerlink" href="#socube.utils.context.ContextManagerBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Basical interface for context manager.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils.exception">
+<span id="socube-utils-exception-module"></span><h2>socube.utils.exception module<a class="headerlink" href="#module-socube.utils.exception" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.utils.exception.ExceptionManager">
+<em class="property">class </em><code class="sig-prename descclassname">socube.utils.exception.</code><code class="sig-name descname">ExceptionManager</code><span class="sig-paren">(</span><em class="sig-param">mail_service: socube.utils.mail.MailService = None</em>, <em class="sig-param">is_continue: bool = False</em>, <em class="sig-param">ignore_keyboard_interrupt: bool = False</em>, <em class="sig-param">ignore_normal_system_exit: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.exception.ExceptionManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.utils.context.ContextManagerBase" title="socube.utils.context.ContextManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.utils.context.ContextManagerBase</span></code></a></p>
+<p>A context manager to deal with exception and notify users if it is required.
+Any exception occurred within this context will be catched and send notification
+email to user if mailService is not equal to ‘None’. You use it as following.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mail_service</strong> (<a class="reference internal" href="#socube.utils.mail.MailService" title="socube.utils.mail.MailService"><em>MailService</em></a>) – A MailService object used to send email to users, If None, no email will be sent</p></li>
+<li><p><strong>is_continue</strong> (<em>bool</em>) – If continue to run this program when an error occurred.</p></li>
+<li><p><strong>ignore_keyboard_interrupt</strong> (<em>bool</em>) – If true, it will ignore keyboard interrupt signal, such as “Ctrl + C”. It prevent
+quit program by pressing keyboard unexpectedly. But it also is a shortcoming
+when you want to terminate program.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mailService</span> <span class="o">=</span> <span class="n">MailService</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">ExceptionManager</span><span class="p">(</span><span class="n">mailService</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>  <span class="c1"># will throw ZeroDivideError</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.utils.exception.ExceptionManager.setMailService">
+<code class="sig-name descname">setMailService</code><span class="sig-paren">(</span><em class="sig-param">mail_service: socube.utils.mail.MailService</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.exception.ExceptionManager.setMailService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the mail service object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.utils.exception.ExceptionManager.setNormalInfo">
+<code class="sig-name descname">setNormalInfo</code><span class="sig-paren">(</span><em class="sig-param">text: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.exception.ExceptionManager.setNormalInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the notification email when quiting context without any exception occurred.
+This can be used to send a processing result. Result should as short as possible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>email main text</strong> (<em>text</em>) – </p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">ExceptionManager</span><span class="p">(</span><span class="n">mailService</span><span class="p">)</span> <span class="k">as</span> <span class="n">em</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="c1"># Here are some processing codes</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">em</span><span class="o">.</span><span class="n">setNormalInfo</span><span class="p">(</span><span class="s2">&quot;Prcoessing results&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils.io">
+<span id="socube-utils-io-module"></span><h2>socube.utils.io module<a class="headerlink" href="#module-socube.utils.io" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.utils.io.uniquePath">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">uniquePath</code><span class="sig-paren">(</span><em class="sig-param">path: str</em>, <em class="sig-param">exists_warning: bool = False</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.utils.io.uniquePath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether <cite>path</cite> existed in the file system. And generate a
+unique path by add index at the end of raw path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – The raw path to be checked.</p></li>
+<li><p><strong>exists_warning</strong> (<em>bool</em>) – Whether to print warning when the path is existed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str, the unique path.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># pkgs/lapjv-1.3.1.tar.gz already existed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniquePath</span><span class="p">(</span><span class="s2">&quot;pkgs/lapjv-1.3.1.tar.gz&quot;</span><span class="p">)</span>
+<span class="go">&#39;pkgs/lapjv-1.3.1.tar(1).gz&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># pkgs/lapjv-1.3.1.tar.gz already existed and</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># pkgs/lapjv-1.3.1.tar(1).gz already existed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">uniquePath</span><span class="p">(</span><span class="s2">&quot;pkgs/lapjv-1.3.1.tar.gz&quot;</span><span class="p">)</span>
+<span class="go">&#39;pkgs/lapjv-1.3.1.tar(2).gz&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.mkDirs">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">mkDirs</code><span class="sig-paren">(</span><em class="sig-param">path: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.io.mkDirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a directory if it not exists. If the parent is not existed,
+it will be created as well.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – The path to be created.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1">#parent is not existed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mkDirs</span><span class="p">(</span><span class="s2">&quot;parent/target/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.rm">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">rm</code><span class="sig-paren">(</span><em class="sig-param">path: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.io.rm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a directory or file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – The path to be removed.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rm</span><span class="p">(</span><span class="s2">&quot;targetFile&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.checkExist">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">checkExist</code><span class="sig-paren">(</span><em class="sig-param">path: str</em>, <em class="sig-param">types: str = 'file'</em>, <em class="sig-param">raise_error: bool = True</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#socube.utils.io.checkExist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether a file or directory is existed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – The path to be checked.</p></li>
+<li><p><strong>types</strong> (<em>str</em>) – The type of the path. “file” or “dir”.</p></li>
+<li><p><strong>raise_error</strong> (<em>bool</em>) – Whether to raise error when the path is not existed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool, whether the path is existed.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">checkExist</span><span class="p">(</span><span class="s2">&quot;/public/file&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkExist</span><span class="p">(</span><span class="s2">&quot;/public/home/&quot;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="s2">&quot;dir&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">checkExist</span><span class="p">(</span><span class="s2">&quot;/public/home/&quot;</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="s2">&quot;dir&quot;</span><span class="p">,</span> <span class="n">raiseError</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.writeCsv">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">writeCsv</code><span class="sig-paren">(</span><em class="sig-param">data: Union[pandas.core.generic.NDFrame, numpy.ndarray], file: str, callback: Optional[Callable] = None, **kwargs</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.io.writeCsv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write <cite>ndarray</cite> or any instance of <cite>NDFrame</cite> to a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Union</em><em>[</em><em>NDFrame</em><em>, </em><em>np.ndarray</em><em>]</em>) – The data to be written.</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – The path to be written.</p></li>
+<li><p><strong>callback</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>]</em>) – The callback function to be called after writing.</p></li>
+<li><p><strong>**kwargs</strong> – The keyword arguments to be passed to <cite>pandas.DataFrame.to_csv</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writeCsv</span><span class="p">(</span><span class="n">ndarray</span><span class="p">,</span> <span class="s2">&quot;ndarray.csv&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">ndarray</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writeCsv</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="s2">&quot;series.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.writeNpy">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">writeNpy</code><span class="sig-paren">(</span><em class="sig-param">data: numpy.ndarray</em>, <em class="sig-param">file: str</em>, <em class="sig-param">callback: Optional[Callable] = None</em>, <em class="sig-param">allow_pickle: bool = True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.io.writeNpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write <cite>ndarray</cite> to NPY binary file. NPY format is
+numpy’s specific file format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.ndarray</em>) – The data to be written.</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – The path to be written.</p></li>
+<li><p><strong>callback</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>]</em>) – The callback function to be called after writing.</p></li>
+<li><p><strong>allow_pickle</strong> (<em>bool</em>) – Wether to allow use pickle to serialize python object.</p></li>
+<li><p><strong>**kwargs</strong> – The keyword arguments to be passed to <cite>numpy.save</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writeNpy</span><span class="p">(</span><span class="n">ndarray</span><span class="p">,</span> <span class="s2">&quot;ndarray.npy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.writeHdf">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">writeHdf</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.generic.NDFrame</em>, <em class="sig-param">file: str</em>, <em class="sig-param">key='data'</em>, <em class="sig-param">mode='w'</em>, <em class="sig-param">callback: Optional[Callable] = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.io.writeHdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write <cite>NDFrame</cite> instance to a HDF5 binary format file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>NDFrame</em>) – The data to be written.</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – The path to be written.</p></li>
+<li><p><strong>key</strong> (<em>str</em>) – The key to be used to store the data.</p></li>
+<li><p><strong>mode</strong> (<em>str</em>) – The mode to be used to open the file.</p></li>
+<li><p><strong>callback</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>]</em>) – The callback function to be called after writing.</p></li>
+<li><p><strong>**kwargs</strong> – The keyword arguments to be passed to <cite>pandas.DataFrame.to_hdf</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">writeHdf</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;data.hdf&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finish&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.io.loadTorchModule">
+<code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">loadTorchModule</code><span class="sig-paren">(</span><em class="sig-param">module: torch.nn.modules.module.Module</em>, <em class="sig-param">file: str</em>, <em class="sig-param">skipped: bool = True</em>, <em class="sig-param">verbose=False</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.io.loadTorchModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load a torch module from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>module</strong> (<em>torch.nn.Module</em>) – The module waited to be updated.</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – The module file path.</p></li>
+<li><p><strong>skipped</strong> (<em>bool</em>) – Whether to skip the loading of the module when the file is not existed.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print the loading message.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.utils.io.Redirect">
+<em class="property">class </em><code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">Redirect</code><span class="sig-paren">(</span><em class="sig-param">target: str</em>, <em class="sig-param">verbose: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.io.Redirect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.utils.context.ContextManagerBase" title="socube.utils.context.ContextManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.utils.context.ContextManagerBase</span></code></a></p>
+<p>A context manager to redirect stdout and stderr.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target</strong> (<em>str</em>) – The redirect target file.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print the redirect message.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">Redirect</span><span class="p">(</span><span class="s2">&quot;stdout.txt&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.utils.io.ReportManager">
+<em class="property">class </em><code class="sig-prename descclassname">socube.utils.io.</code><code class="sig-name descname">ReportManager</code><span class="sig-paren">(</span><em class="sig-param">reports: Dict[str</em>, <em class="sig-param">pandas.core.generic.NDFrame] = {}</em>, <em class="sig-param">verbose: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.io.ReportManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.utils.context.ContextManagerBase" title="socube.utils.context.ContextManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.utils.context.ContextManagerBase</span></code></a></p>
+<p>A context manager to save important data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reports</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>NDFrame</em><em>]</em>) – a dictionary of reports, key is report filename, value
+is a <cite>NDFrame</cite> object waited to be saved.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print the saving message.
+If <cite>True</cite>, ReportManager will work in silence.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">ReportManager</span><span class="p">({</span><span class="s2">&quot;report1&quot;</span><span class="p">:</span> <span class="n">df1</span><span class="p">,</span> <span class="s2">&quot;report2&quot;</span><span class="p">:</span> <span class="n">df2</span><span class="p">},</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">rm</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;World&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">rm</span><span class="o">.</span><span class="n">addReports</span><span class="p">(</span><span class="s2">&quot;report1&quot;</span><span class="p">,</span> <span class="n">df3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">rm</span><span class="o">.</span><span class="n">addReports</span><span class="p">(</span><span class="s2">&quot;report2&quot;</span><span class="p">,</span> <span class="n">df4</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.utils.io.ReportManager.addReports">
+<code class="sig-name descname">addReports</code><span class="sig-paren">(</span><em class="sig-param">reports: Dict[str, pandas.core.generic.NDFrame]</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.io.ReportManager.addReports" title="Permalink to this definition">¶</a></dt>
+<dd><p>add new reports in context</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>reports</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>NDFrame</em><em>]</em>) – a dictionary of reports, key is report filename, value is a
+<cite>NDFrame</cite> object waited to be saved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.utils.io.ReportManager.updateReportName">
+<code class="sig-name descname">updateReportName</code><span class="sig-paren">(</span><em class="sig-param">old: str</em>, <em class="sig-param">new: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.io.ReportManager.updateReportName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the name of a report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old</strong> (<em>str</em>) – The old report name.</p></li>
+<li><p><strong>new</strong> (<em>str</em>) – The new report name.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils.logging">
+<span id="socube-utils-logging-module"></span><h2>socube.utils.logging module<a class="headerlink" href="#module-socube.utils.logging" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.utils.logging.log">
+<code class="sig-prename descclassname">socube.utils.logging.</code><code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param">name: str</em>, <em class="sig-param">msg: str</em>, <em class="sig-param">level: str = 'info'</em>, <em class="sig-param">quiet: bool = False</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.utils.logging.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – The name of the logger.</p></li>
+<li><p><strong>msg</strong> (<em>str</em>) – The message to be logged.</p></li>
+<li><p><strong>level</strong> (<em>str</em>) – The level of the message.</p></li>
+<li><p><strong>quiet</strong> (<em>bool</em>) – If True, the message will not be logged.</p></li>
+<li><p><strong>*args</strong> – The rest of the arguments will be passed to the logger.</p></li>
+<li><p><strong>**kwargs</strong> – The rest of the keyword arguments will be passed to the logger.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;mylogger&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;debug&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;mylogger&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;mylogger&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;warn&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;mylogger&quot;</span><span class="p">,</span> <span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.logging.getJobId">
+<code class="sig-prename descclassname">socube.utils.logging.</code><code class="sig-name descname">getJobId</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.utils.logging.getJobId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate job id randomly. It’s useful to seperate different jobs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>a string id</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getJobId</span><span class="p">()</span>
+<span class="go">&#39;20211102-141041-237&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getJobId</span><span class="p">()</span>
+<span class="go">&#39;20211102-132411-806&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils.mail">
+<span id="socube-utils-mail-module"></span><h2>socube.utils.mail module<a class="headerlink" href="#module-socube.utils.mail" title="Permalink to this headline">¶</a></h2>
+<p>This module provides some mail service tools</p>
+<dl class="class">
+<dt id="socube.utils.mail.MailService">
+<em class="property">class </em><code class="sig-prename descclassname">socube.utils.mail.</code><code class="sig-name descname">MailService</code><span class="sig-paren">(</span><em class="sig-param">sender: str</em>, <em class="sig-param">passwd: str</em>, <em class="sig-param">server: str</em>, <em class="sig-param">port: int</em>, <em class="sig-param">nickname: str = 'SoCube'</em>, <em class="sig-param">ssl: bool = True</em>, <em class="sig-param">verbose: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.mail.MailService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.utils.context.ContextManagerBase" title="socube.utils.context.ContextManagerBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.utils.context.ContextManagerBase</span></code></a></p>
+<p>Provide basic SMTP mail service for mail sending. SMTP is the
+abbreviation of Simple Mail Transfer Protocol. For detail, please
+search it in google or bing. Context manager is supported.
+You can use it as following.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sender</strong> (<em>str</em>) – email address as a sender</p></li>
+<li><p><strong>passwd</strong> (<em>str</em>) – sender’s password for SMTP service. For some SMTP service vendors,
+this password is the same as password used to visit mail website,
+such as Zhejiang University Mail Service. But for other vendors like
+QQ Mail Service, you need use independent password for SMTP service.
+For detail, you need visit related mail service vendors.</p></li>
+<li><p><strong>server</strong> (<em>str</em>) – the domain of SMTP server. such as ‘smtp.zju.edu.cn’,’smtp.qq.com’,
+which provided by the mail service vendors.</p></li>
+<li><p><strong>port</strong> (<em>int</em>) – web port for SMTP service provided by service vendors.</p></li>
+<li><p><strong>nickname</strong> (<em>str</em>) – the nickname of sender when sending a mail</p></li>
+<li><p><strong>ssl</strong> (<em>bool</em>) – If True, use SSL for security.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – If True, mail service will run in background without any output info.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">MailService</span><span class="p">(</span><span class="s2">&quot;account@gmail.com&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;smtp.gmail.com&quot;</span><span class="p">,</span> <span class="mi">465</span><span class="p">)</span> <span class="k">as</span> <span class="n">ms</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ms</span><span class="o">.</span><span class="n">sendText</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.utils.mail.MailService.login">
+<code class="sig-name descname">login</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#socube.utils.mail.MailService.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Login to enable service. After logining, you should use service
+before connection timeout.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.utils.mail.MailService.quit">
+<code class="sig-name descname">quit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#socube.utils.mail.MailService.quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quit to close service and release resources occuppied</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.utils.mail.MailService.sendSelf">
+<code class="sig-name descname">sendSelf</code><span class="sig-paren">(</span><em class="sig-param">subject: str</em>, <em class="sig-param">text: str</em>, <em class="sig-param">attachments: List[str] = []</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#socube.utils.mail.MailService.sendSelf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a plain text mail without any attachment to sendor himself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subject</strong> (<em>str</em>) – the subject of email.</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – email’s main text. rich html format is not supported.</p></li>
+<li><p><strong>attachments</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – a list of attachments’ filename. attachments which are not existed
+will be skipped automatically</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool, True if sending succeed, False if sending failed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.utils.mail.MailService.sendText">
+<code class="sig-name descname">sendText</code><span class="sig-paren">(</span><em class="sig-param">to_dict: Dict[str, str], subject: str, text: str, attachments: List[str] = []</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#socube.utils.mail.MailService.sendText" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send a plain text email with or without attachments</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>to_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – a dict of email address and nickname.</p></li>
+<li><p><strong>subject</strong> (<em>str</em>) – the subject of email.</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – email’s main text. rich html format is not supported.</p></li>
+<li><p><strong>attachments</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – a list of attachments’ filename. attachments which are not existed
+will be skipped automatically</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool, True if sending succeed, False if sending failed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.utils.mail.MailService.status">
+<em class="property">property </em><code class="sig-name descname">status</code><a class="headerlink" href="#socube.utils.mail.MailService.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is service available</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils.memory">
+<span id="socube-utils-memory-module"></span><h2>socube.utils.memory module<a class="headerlink" href="#module-socube.utils.memory" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.utils.memory.visualBytes">
+<code class="sig-prename descclassname">socube.utils.memory.</code><code class="sig-name descname">visualBytes</code><span class="sig-paren">(</span><em class="sig-param">size: int</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.utils.memory.visualBytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make memory size more friendly with proper unit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>a int type of bytes szie</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a formated string with size unit.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">visualBytes</span><span class="p">(</span><span class="mi">2</span><span class="o">&lt;&lt;</span><span class="mi">20</span><span class="p">)</span>
+<span class="go">&#39;2.00MB&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">visualBytes</span><span class="p">(</span><span class="mi">18200565665</span><span class="p">)</span>
+<span class="go">&#39;16.95GB&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.memory.getGPUReport">
+<code class="sig-prename descclassname">socube.utils.memory.</code><code class="sig-name descname">getGPUReport</code><span class="sig-paren">(</span><em class="sig-param">*devices: int</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.utils.memory.getGPUReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get gpu memory usage of this program by pytorch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>devices</strong> (<em>a list of device id</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A string report of gpu memory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.utils.memory.autoClearIter">
+<code class="sig-prename descclassname">socube.utils.memory.</code><code class="sig-name descname">autoClearIter</code><span class="sig-paren">(</span><em class="sig-param">iter: Iterable[Any]</em><span class="sig-paren">)</span> &#x2192; email.generator.Generator<a class="headerlink" href="#socube.utils.memory.autoClearIter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a generator to automatically clean GPU memory when iterating.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-socube.utils" title="Permalink to this headline">¶</a></h2>
+<p>This module and its submodules provide some basic tools</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Zhang.H.N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

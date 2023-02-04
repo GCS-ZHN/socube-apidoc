@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>socube.train package &mdash; SoCube 1.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SoCube
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">socube.train package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-socube.train.metrics">socube.train.metrics module</a></li>
+<li><a class="reference internal" href="#module-socube.train.strategy">socube.train.strategy module</a></li>
+<li><a class="reference internal" href="#module-socube.train">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SoCube</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">socube.train package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/socube.train.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="socube-train-package">
+<h1>socube.train package<a class="headerlink" href="#socube-train-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-socube.train.metrics">
+<span id="socube-train-metrics-module"></span><h2>socube.train.metrics module<a class="headerlink" href="#module-socube.train.metrics" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.train.metrics.getCurve">
+<code class="sig-prename descclassname">socube.train.metrics.</code><code class="sig-name descname">getCurve</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">score: numpy.ndarray</em>, <em class="sig-param">average: str = 'macro'</em>, <em class="sig-param">curve: str = 'roc'</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.train.metrics.getCurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate receiver operating characteristic (ROC) for multiclass task
+based on false positive rate(FPR) and true positive rate(TPR). The area
+under curve(AUC) is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – the true label 1D ndarray vector</p></li>
+<li><p><strong>score</strong> (<em>np.ndarray</em>) – the predict score 1D ndarray vector</p></li>
+<li><p><strong>average</strong> (<em>str</em>) – the average method, “macro” , “micro” or “binary”
+how to average multiclass. Because conventional
+ROC is designed for binary classification task. For
+detail about this, please search it on the Internet.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A triple tuple of (x, y, AUC). When curve is “roc”,</em></p></li>
+<li><p><em>x is FPR and y is TPR. When curve is “prc”, x is FNR and y is TNR.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.train.metrics.evaluateReport">
+<code class="sig-prename descclassname">socube.train.metrics.</code><code class="sig-name descname">evaluateReport</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">score: numpy.ndarray</em>, <em class="sig-param">roc_plot_file: Optional[str] = None</em>, <em class="sig-param">prc_plot_file: Optional[str] = None</em>, <em class="sig-param">average: str = 'macro'</em>, <em class="sig-param">threshold: float = 0.5</em><span class="sig-paren">)</span> &#x2192; pandas.core.series.Series<a class="headerlink" href="#socube.train.metrics.evaluateReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate model performance with multiple indicator and generate file report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – the true label 1D ndarray vector</p></li>
+<li><p><strong>score</strong> (<em>np.ndarray</em>) – the predict score 1D ndarray vector</p></li>
+<li><p><strong>roc_plot_file</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – the file name of ROC curve plot. If None, it will not save plot.</p></li>
+<li><p><strong>prc_plot_file</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – the file name of PR curve plot. If None, it will not save plot.</p></li>
+<li><p><strong>average</strong> (<em>str</em>) – the average method, “macro” , “micro” or “binary”
+how to average multiclass. Because conventional
+ROC is designed for binary classification task. For
+detail about this, please search it on the Internet.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – the threshold of predict score.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a pandas.Series object as the report.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.train.metrics.binaryRate">
+<code class="sig-prename descclassname">socube.train.metrics.</code><code class="sig-name descname">binaryRate</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">predict: numpy.ndarray</em>, <em class="sig-param">positive_first: bool = False</em><span class="sig-paren">)</span> &#x2192; Tuple[float]<a class="headerlink" href="#socube.train.metrics.binaryRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>For binary classification task, calculate its confusion matrix
+and true positive rate (TPR), false negative rate (FNR), false
+positive rate (FPR) and true negative rate (TNR).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – the true label 1D ndarray vector</p></li>
+<li><p><strong>predict</strong> (<em>np.ndarray</em>) – the predict label 1D ndarray vector</p></li>
+<li><p><strong>positive_first</strong> (<em>If True</em><em>, </em><em>it will regard 0 as positive class. Otherwise</em>) – it will regard 1 as positive class. By default, it is
+False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a tuple of TPR, FNR, FPR, TNR</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.train.strategy">
+<span id="socube-train-strategy-module"></span><h2>socube.train.strategy module<a class="headerlink" href="#module-socube.train.strategy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.train.strategy.EarlyStopping">
+<em class="property">class </em><code class="sig-prename descclassname">socube.train.strategy.</code><code class="sig-name descname">EarlyStopping</code><span class="sig-paren">(</span><em class="sig-param">descend: bool = True</em>, <em class="sig-param">patience: int = 7</em>, <em class="sig-param">threshold: float = 1e-05</em>, <em class="sig-param">verbose: int = 0</em>, <em class="sig-param">delta: float = 0</em>, <em class="sig-param">path='checkpoint.pt'</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.train.strategy.EarlyStopping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Early stops the training if validation loss doesn’t improve after a given patience.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descend</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, the loss is minimized. If False, the loss is maximized.</p></li>
+<li><p><strong>patience</strong> (<em>int</em><em>, </em><em>default 7</em>) – How long to wait after last time validation loss improved.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em><em>, </em><em>default 0</em>) – <dl class="simple">
+<dt>Prints a message which level great than <cite>verbose</cite> for each</dt><dd><p>validation loss improvement.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>delta</strong> (<em>float</em><em>, </em><em>default 0</em>) – Minimum change in the monitored quantity to qualify as an improvement.</p></li>
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>default 'checkpoint.pt'</em>) – Path for the checkpoint to be saved to.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.train.strategy.EarlyStopping.earlyStop">
+<em class="property">property </em><code class="sig-name descname">earlyStop</code><a class="headerlink" href="#socube.train.strategy.EarlyStopping.earlyStop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wether to reach early stopping point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Boolean value</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.train">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-socube.train" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.train.getCurve">
+<code class="sig-prename descclassname">socube.train.</code><code class="sig-name descname">getCurve</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">score: numpy.ndarray</em>, <em class="sig-param">average: str = 'macro'</em>, <em class="sig-param">curve: str = 'roc'</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.train.getCurve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate receiver operating characteristic (ROC) for multiclass task
+based on false positive rate(FPR) and true positive rate(TPR). The area
+under curve(AUC) is used.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – the true label 1D ndarray vector</p></li>
+<li><p><strong>score</strong> (<em>np.ndarray</em>) – the predict score 1D ndarray vector</p></li>
+<li><p><strong>average</strong> (<em>str</em>) – the average method, “macro” , “micro” or “binary”
+how to average multiclass. Because conventional
+ROC is designed for binary classification task. For
+detail about this, please search it on the Internet.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A triple tuple of (x, y, AUC). When curve is “roc”,</em></p></li>
+<li><p><em>x is FPR and y is TPR. When curve is “prc”, x is FNR and y is TNR.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.train.evaluateReport">
+<code class="sig-prename descclassname">socube.train.</code><code class="sig-name descname">evaluateReport</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">score: numpy.ndarray</em>, <em class="sig-param">roc_plot_file: Optional[str] = None</em>, <em class="sig-param">prc_plot_file: Optional[str] = None</em>, <em class="sig-param">average: str = 'macro'</em>, <em class="sig-param">threshold: float = 0.5</em><span class="sig-paren">)</span> &#x2192; pandas.core.series.Series<a class="headerlink" href="#socube.train.evaluateReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate model performance with multiple indicator and generate file report.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – the true label 1D ndarray vector</p></li>
+<li><p><strong>score</strong> (<em>np.ndarray</em>) – the predict score 1D ndarray vector</p></li>
+<li><p><strong>roc_plot_file</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – the file name of ROC curve plot. If None, it will not save plot.</p></li>
+<li><p><strong>prc_plot_file</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – the file name of PR curve plot. If None, it will not save plot.</p></li>
+<li><p><strong>average</strong> (<em>str</em>) – the average method, “macro” , “micro” or “binary”
+how to average multiclass. Because conventional
+ROC is designed for binary classification task. For
+detail about this, please search it on the Internet.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – the threshold of predict score.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a pandas.Series object as the report.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.train.binaryRate">
+<code class="sig-prename descclassname">socube.train.</code><code class="sig-name descname">binaryRate</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">predict: numpy.ndarray</em>, <em class="sig-param">positive_first: bool = False</em><span class="sig-paren">)</span> &#x2192; Tuple[float]<a class="headerlink" href="#socube.train.binaryRate" title="Permalink to this definition">¶</a></dt>
+<dd><p>For binary classification task, calculate its confusion matrix
+and true positive rate (TPR), false negative rate (FNR), false
+positive rate (FPR) and true negative rate (TNR).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – the true label 1D ndarray vector</p></li>
+<li><p><strong>predict</strong> (<em>np.ndarray</em>) – the predict label 1D ndarray vector</p></li>
+<li><p><strong>positive_first</strong> (<em>If True</em><em>, </em><em>it will regard 0 as positive class. Otherwise</em>) – it will regard 1 as positive class. By default, it is
+False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a tuple of TPR, FNR, FPR, TNR</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.train.EarlyStopping">
+<em class="property">class </em><code class="sig-prename descclassname">socube.train.</code><code class="sig-name descname">EarlyStopping</code><span class="sig-paren">(</span><em class="sig-param">descend: bool = True</em>, <em class="sig-param">patience: int = 7</em>, <em class="sig-param">threshold: float = 1e-05</em>, <em class="sig-param">verbose: int = 0</em>, <em class="sig-param">delta: float = 0</em>, <em class="sig-param">path='checkpoint.pt'</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.train.EarlyStopping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Early stops the training if validation loss doesn’t improve after a given patience.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>descend</strong> (<em>bool</em><em>, </em><em>default True</em>) – If True, the loss is minimized. If False, the loss is maximized.</p></li>
+<li><p><strong>patience</strong> (<em>int</em><em>, </em><em>default 7</em>) – How long to wait after last time validation loss improved.</p></li>
+<li><p><strong>verbose</strong> (<em>int</em><em>, </em><em>default 0</em>) – <dl class="simple">
+<dt>Prints a message which level great than <cite>verbose</cite> for each</dt><dd><p>validation loss improvement.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>delta</strong> (<em>float</em><em>, </em><em>default 0</em>) – Minimum change in the monitored quantity to qualify as an improvement.</p></li>
+<li><p><strong>path</strong> (<em>str</em><em>, </em><em>default 'checkpoint.pt'</em>) – Path for the checkpoint to be saved to.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.train.EarlyStopping.earlyStop">
+<em class="property">property </em><code class="sig-name descname">earlyStop</code><a class="headerlink" href="#socube.train.EarlyStopping.earlyStop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wether to reach early stopping point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Boolean value</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Zhang.H.N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

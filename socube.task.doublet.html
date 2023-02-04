@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>socube.task.doublet package &mdash; SoCube 1.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SoCube
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">socube.task.doublet package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-socube.task.doublet.data">socube.task.doublet.data module</a></li>
+<li><a class="reference internal" href="#module-socube.task.doublet.model">socube.task.doublet.model module</a></li>
+<li><a class="reference internal" href="#module-socube.task.doublet.train">socube.task.doublet.train module</a></li>
+<li><a class="reference internal" href="#module-socube.task.doublet">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SoCube</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">socube.task.doublet package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/socube.task.doublet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="socube-task-doublet-package">
+<h1>socube.task.doublet package<a class="headerlink" href="#socube-task-doublet-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-socube.task.doublet.data">
+<span id="socube-task-doublet-data-module"></span><h2>socube.task.doublet.data module<a class="headerlink" href="#module-socube.task.doublet.data" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.task.doublet.data.ConvClassifyDataset">
+<em class="property">class </em><code class="sig-prename descclassname">socube.task.doublet.data.</code><code class="sig-name descname">ConvClassifyDataset</code><span class="sig-paren">(</span><em class="sig-param">data_dir: str</em>, <em class="sig-param">transform: torch.nn.modules.module.Module = None</em>, <em class="sig-param">labels: str = 'label.csv'</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">use_index: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.data.ConvClassifyDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="socube.data.html#socube.data.loading.ConvDatasetBase" title="socube.data.loading.ConvDatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.data.loading.ConvDatasetBase</span></code></a></p>
+<p>Class of dataset for socube</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>string</em>) – the dataset’s directory</p></li>
+<li><p><strong>transform</strong> (<em>torch module</em>) – sample transform, such as <cite>Resize</cite></p></li>
+<li><p><strong>labels</strong> (<em>string</em>) – the label file csv name</p></li>
+<li><p><strong>shuffle</strong> (<em>boolean value</em>) – if <cite>True</cite>, data will be shuffled while k-fold cross-valid</p></li>
+<li><p><strong>seed</strong> (<em>random seed</em>) – random seed for k-fold cross-valid or sample</p></li>
+<li><p><strong>k</strong> (<em>integer scalar value</em>) – k value of k-fold cross-valid</p></li>
+<li><p><strong>use_index</strong> (<em>boolean value</em>) – If <cite>True</cite>, it will read sample file by index.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.task.doublet.data.ConvClassifyDataset.sampler">
+<code class="sig-name descname">sampler</code><span class="sig-paren">(</span><em class="sig-param">subset: torch.utils.data.dataset.Subset</em><span class="sig-paren">)</span> &#x2192; torch.utils.data.sampler.WeightedRandomSampler<a class="headerlink" href="#socube.task.doublet.data.ConvClassifyDataset.sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate weighted random sampler for a subset of this dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>subset</strong> (<em>Subset</em>) – the subset of this dataset</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Weighted random sampler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.task.doublet.data.ConvClassifyDataset.typeCounts">
+<em class="property">property </em><code class="sig-name descname">typeCounts</code><a class="headerlink" href="#socube.task.doublet.data.ConvClassifyDataset.typeCounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numbers of different types</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.data.generateDoublet">
+<code class="sig-prename descclassname">socube.task.doublet.data.</code><code class="sig-name descname">generateDoublet</code><span class="sig-paren">(</span><em class="sig-param">samples: pandas.core.frame.DataFrame</em>, <em class="sig-param">ratio: float = 1.0</em>, <em class="sig-param">adj: float = 1.0</em>, <em class="sig-param">seed: Optional[int] = None</em>, <em class="sig-param">size: Optional[int] = None</em>, <em class="sig-param">mode: Optional[str] = 'balance'</em><span class="sig-paren">)</span> &#x2192; Tuple[pandas.core.frame.DataFrame]<a class="headerlink" href="#socube.task.doublet.data.generateDoublet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate training set from samples. in silico doublet
+will be simulated as positive samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<em>pd.DataFrame</em>) – the samples dataframe, with row as cells (droplets, simples)
+and column as genes.</p></li>
+<li><p><strong>ratio</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The ratio of the number of doublet and singlet.</p></li>
+<li><p><strong>adj</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The adjustment factor for the doublet expression level. Generally,
+doublet is considered to have twice the gene expression level of
+singlet, but this is not necessarily the case in some cases. The gene
+expression level of the generated doublet is adjusted by the
+adjustment factor.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – The random seed for the generation of the doublet.</p></li>
+<li><p><strong>size</strong> (<em>int</em><em>, </em><em>default None</em>) – The size of the generated training set. If <cite>None</cite>, the size of the
+training set will be the same as the size of the samples.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>default &quot;balance&quot;</em>) – The mode of the generated training set. If “heterotypic”, heterotypic
+doublet will be majority. If “homotypic”, homotypic doublet will be
+majority. If “balance”, the number of heterotypic and homotypic
+doublet will be balanced.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>a tuple of two pd.DataFrame, the first is the positive (doublet) samples,</em></p></li>
+<li><p><em>the second is the negative (singlet) samples.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.data.checkShape">
+<code class="sig-prename descclassname">socube.task.doublet.data.</code><code class="sig-name descname">checkShape</code><span class="sig-paren">(</span><em class="sig-param">path: str</em>, <em class="sig-param">shape: tuple = (10</em>, <em class="sig-param">None</em>, <em class="sig-param">None)</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.task.doublet.data.checkShape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check dataset shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>string</em>) – the dataset’s directory</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em><em>, </em><em>default</em><em> (</em><em>10</em><em>, </em><em>None</em><em>, </em><em>None</em><em>)</em>) – the expected shape of the dataset, None means any shape</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – if the shape of the dataset is not the same as the expected:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.data.checkData">
+<code class="sig-prename descclassname">socube.task.doublet.data.</code><code class="sig-name descname">checkData</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.data.checkData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data legitimacy verification</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Data to be checked, a dataframe of scRNA-seq data</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If data contains NaN or inf
+    IndexError
+       If data contains duplicate column or row names,
+       or if droplet name begins with “doublet”</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.data.createTrainData">
+<code class="sig-prename descclassname">socube.task.doublet.data.</code><code class="sig-name descname">createTrainData</code><span class="sig-paren">(</span><em class="sig-param">samples: pandas.core.frame.DataFrame</em>, <em class="sig-param">output_path: str</em>, <em class="sig-param">ratio: float = 1.0</em>, <em class="sig-param">adj: float = 1.0</em>, <em class="sig-param">seed: Optional[int] = None</em>, <em class="sig-param">mode: Optional[int] = 'balance'</em><span class="sig-paren">)</span> &#x2192; Tuple[pandas.core.generic.NDFrame]<a class="headerlink" href="#socube.task.doublet.data.createTrainData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on the original data, doublets are generated as
+the positive data and a subset of the original data is used
+as the negative data to obtain the training dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<em>pd.DataFrame</em>) – Original data, a dataframe of scRNA-seq data. Shape is (n_droplets, n_genes)</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to save the generated training data.</p></li>
+<li><p><strong>ratio</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The ratio of the number of doublet and singlet.</p></li>
+<li><p><strong>adj</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The adjustment factor for the doublet expression level. Generally,
+doublet is considered to have twice the gene expression level of
+singlet, but this is not necessarily the case in some cases. The gene
+expression level of the generated doublet is adjusted by the
+adjustment factor.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – The random seed for the generation of the doublet.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>default &quot;balance&quot;</em>) – The mode of the generated training set. If “heterotypic”, heterotypic
+doublet will be majority. If “homotypic”, homotypic doublet will be
+majority. If “balance”, the number of heterotypic and homotypic doublet
+will be balanced. see <cite>generateDoublet</cite> for more details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A tuple of NDFrames. The first element is training data, the second element</em></p></li>
+<li><p><em>is the training label.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.task.doublet.model">
+<span id="socube-task-doublet-model-module"></span><h2>socube.task.doublet.model module<a class="headerlink" href="#module-socube.task.doublet.model" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.task.doublet.model.SoCubeNet">
+<em class="property">class </em><code class="sig-prename descclassname">socube.task.doublet.model.</code><code class="sig-name descname">SoCubeNet</code><span class="sig-paren">(</span><em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">freeze: bool = False</em>, <em class="sig-param">binary: bool = True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.model.SoCubeNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socube.net._base.NetBase</span></code></p>
+<p>Neural network model constructed for doublet detection task. previous name
+is Conv2DClassifyNet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<em>integer scalar value</em>) – input data’s channel count</p></li>
+<li><p><strong>out_channels</strong> (<em>integer scalar value</em>) – output data’s channel count</p></li>
+<li><p><strong>freeze</strong> (<em>boolean value</em>) – Whether to freeze the feature extraction layer, default is <cite>False</cite></p></li>
+<li><p><strong>binary</strong> (<em>boolean value</em>) – Whether the output probability is binary or multicategorical, default is <cite>True</cite> for binary</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="n">SoCubeNet</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.task.doublet.model.SoCubeNet.criterion">
+<code class="sig-name descname">criterion</code><span class="sig-paren">(</span><em class="sig-param">yPredict: torch.Tensor</em>, <em class="sig-param">yTrue: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.task.doublet.model.SoCubeNet.criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract methods to calculate the loss of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_predict</strong> (<em>torch.Tensor</em>) – The predicted data.</p></li>
+<li><p><strong>y_true</strong> (<em>torch.Tensor</em>) – The true data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The loss of the model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.task.doublet.model.SoCubeNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x1: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.task.doublet.model.SoCubeNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data forward for a neural network waited to be implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – The input data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The output data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="socube.task.doublet.model.SoCubeNet.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#socube.task.doublet.model.SoCubeNet.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.task.doublet.train">
+<span id="socube-task-doublet-train-module"></span><h2>socube.task.doublet.train module<a class="headerlink" href="#module-socube.task.doublet.train" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.task.doublet.train.fit">
+<code class="sig-prename descclassname">socube.task.doublet.train.</code><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">home_dir: str</em>, <em class="sig-param">data_dir: str</em>, <em class="sig-param">lr: float = 0.001</em>, <em class="sig-param">gamma: float = 0.99</em>, <em class="sig-param">epochs: int = 100</em>, <em class="sig-param">train_batch: int = 32</em>, <em class="sig-param">valid_batch: int = 500</em>, <em class="sig-param">transform: torch.nn.modules.module.Module = None</em>, <em class="sig-param">in_channels: int = 10</em>, <em class="sig-param">num_workers: int = 0</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">label_file: str = 'label.csv'</em>, <em class="sig-param">threshold: float = 0.5</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">once: bool = False</em>, <em class="sig-param">use_index: bool = True</em>, <em class="sig-param">gpu_ids: List[str] = None</em>, <em class="sig-param">step: int = 5</em>, <em class="sig-param">model_id: str = None</em>, <em class="sig-param">pretrain_model_path: str = None</em>, <em class="sig-param">max_acc_limit: float = 1.0</em>, <em class="sig-param">multi_process: bool = False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.task.doublet.train.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train socube model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>home_dir</strong> (<em>str</em>) – the home directory of the specfic job</p></li>
+<li><p><strong>data_dir</strong> (<em>str</em>) – the dataset’s directory</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – learning rate, default: 0.001</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – learning rate decay, default: 0.99</p></li>
+<li><p><strong>epochs</strong> (<em>int</em>) – training epochs, default: 100</p></li>
+<li><p><strong>train_batch</strong> (<em>int</em>) – training batch size, default: 32</p></li>
+<li><p><strong>valid_batch</strong> (<em>int</em>) – validation batch size, default: 500</p></li>
+<li><p><strong>transform</strong> (<em>nn.Module</em>) – sample transform, such as <cite>Resize</cite></p></li>
+<li><p><strong>in_channels</strong> (<em>int</em>) – the number of input channels, default: 10</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – the number of workers for data loading, default: 0</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em>) – if <cite>True</cite>, data will be shuffled while k-fold cross-valid</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – random seed for k-fold cross-valid or sample</p></li>
+<li><p><strong>label_file</strong> (<em>str</em>) – the label file csv name, default: “label.csv”,</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – the threshold for classification, default: 0.5</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – k value of k-fold cross-valid</p></li>
+<li><p><strong>once</strong> (<em>bool</em>) – if <cite>True</cite>, k-fold cross-validation runs first fold only</p></li>
+<li><p><strong>use_index</strong> (<em>bool</em>) – If <cite>True</cite>, it will read sample file by index. Otherwise, it will read
+sample file by sample name.</p></li>
+<li><p><strong>device_name</strong> (<em>str</em>) – the device name, default: “cpu”</p></li>
+<li><p><strong>step</strong> (<em>int</em>) – the epoch step of learning rate decay, default: 5</p></li>
+<li><p><strong>model_id</strong> (<em>str</em>) – the model id, If <cite>None</cite>, it will be generated automatically</p></li>
+<li><p><strong>pretrain_model_path</strong> (<em>str</em>) – the pretrain model path, if not <cite>None</cite>, it will load the pretrain model</p></li>
+<li><p><strong>max_acc_limit</strong> (<em>float</em>) – the max accuracy limit, if the accuracy is higher than this limit, the
+training will stop to prevent overfitting.</p></li>
+<li><p><strong>multi_process</strong> (<em>bool</em>) – if <cite>True</cite>, it will use multi-process to train the model.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – the other parameters wanted to be saved in the log file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>job id string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.train.validate">
+<code class="sig-prename descclassname">socube.task.doublet.train.</code><code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">data_loader: torch.utils.data.dataloader.DataLoader</em>, <em class="sig-param">model: socube.net._base.NetBase</em>, <em class="sig-param">device: torch.device</em>, <em class="sig-param">with_progress: bool = False</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#socube.task.doublet.train.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate model performance basically</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataLoader</strong> (<em>the torch dataloader object used for validation</em>) – </p></li>
+<li><p><strong>model</strong> (Network model implemented <cite>NetBase</cite>) – the model waited for validation</p></li>
+<li><p><strong>device</strong> (<em>the cpu/gpu device</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a quadra tuple of (average loss, average ACC, true label, predict score)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.train.infer">
+<code class="sig-prename descclassname">socube.task.doublet.train.</code><code class="sig-name descname">infer</code><span class="sig-paren">(</span><em class="sig-param">data_dir: str</em>, <em class="sig-param">home_dir: str</em>, <em class="sig-param">model_id: str</em>, <em class="sig-param">label_file: str</em>, <em class="sig-param">in_channels: int = 10</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">threshold: float = 0.5</em>, <em class="sig-param">batch_size: int = 400</em>, <em class="sig-param">gpu_ids: List[str] = None</em>, <em class="sig-param">with_eval: bool = False</em>, <em class="sig-param">seed: Optional[int] = None</em>, <em class="sig-param">multi_process: bool = False</em>, <em class="sig-param">once: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.train.infer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model inference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>str</em>) – the directory of data</p></li>
+<li><p><strong>home_dir</strong> (<em>str</em>) – the home directory of output</p></li>
+<li><p><strong>model_id</strong> (<em>str</em>) – the id of model</p></li>
+<li><p><strong>label_file</strong> (<em>str</em>) – the label file used to inference</p></li>
+<li><p><strong>in_channels</strong> (<em>int</em>) – the number of input channels</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – k value for k-fold cross validation</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – the threshold for binary classification</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – the batch size for inference</p></li>
+<li><p><strong>gpu_ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – the list of gpu ids</p></li>
+<li><p><strong>with_eval</strong> (<em>bool</em>) – whether to evaluate the model performance</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – the seed for random</p></li>
+<li><p><strong>multi_process</strong> (<em>bool</em>) – whether to use multi-process for inference</p></li>
+<li><p><strong>once</strong> (<em>bool</em>) – whether use emsemble for inference</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.task.doublet">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-socube.task.doublet" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.task.doublet.SoCubeNet">
+<em class="property">class </em><code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">SoCubeNet</code><span class="sig-paren">(</span><em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">freeze: bool = False</em>, <em class="sig-param">binary: bool = True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.SoCubeNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socube.net._base.NetBase</span></code></p>
+<p>Neural network model constructed for doublet detection task. previous name
+is Conv2DClassifyNet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<em>integer scalar value</em>) – input data’s channel count</p></li>
+<li><p><strong>out_channels</strong> (<em>integer scalar value</em>) – output data’s channel count</p></li>
+<li><p><strong>freeze</strong> (<em>boolean value</em>) – Whether to freeze the feature extraction layer, default is <cite>False</cite></p></li>
+<li><p><strong>binary</strong> (<em>boolean value</em>) – Whether the output probability is binary or multicategorical, default is <cite>True</cite> for binary</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span> <span class="n">SoCubeNet</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.task.doublet.SoCubeNet.criterion">
+<code class="sig-name descname">criterion</code><span class="sig-paren">(</span><em class="sig-param">yPredict: torch.Tensor</em>, <em class="sig-param">yTrue: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.task.doublet.SoCubeNet.criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract methods to calculate the loss of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_predict</strong> (<em>torch.Tensor</em>) – The predicted data.</p></li>
+<li><p><strong>y_true</strong> (<em>torch.Tensor</em>) – The true data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The loss of the model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.task.doublet.SoCubeNet.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x1: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.task.doublet.SoCubeNet.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data forward for a neural network waited to be implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – The input data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The output data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="socube.task.doublet.SoCubeNet.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#socube.task.doublet.SoCubeNet.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.task.doublet.ConvClassifyDataset">
+<em class="property">class </em><code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">ConvClassifyDataset</code><span class="sig-paren">(</span><em class="sig-param">data_dir: str</em>, <em class="sig-param">transform: torch.nn.modules.module.Module = None</em>, <em class="sig-param">labels: str = 'label.csv'</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">use_index: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.ConvClassifyDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="socube.data.html#socube.data.loading.ConvDatasetBase" title="socube.data.loading.ConvDatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.data.loading.ConvDatasetBase</span></code></a></p>
+<p>Class of dataset for socube</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>string</em>) – the dataset’s directory</p></li>
+<li><p><strong>transform</strong> (<em>torch module</em>) – sample transform, such as <cite>Resize</cite></p></li>
+<li><p><strong>labels</strong> (<em>string</em>) – the label file csv name</p></li>
+<li><p><strong>shuffle</strong> (<em>boolean value</em>) – if <cite>True</cite>, data will be shuffled while k-fold cross-valid</p></li>
+<li><p><strong>seed</strong> (<em>random seed</em>) – random seed for k-fold cross-valid or sample</p></li>
+<li><p><strong>k</strong> (<em>integer scalar value</em>) – k value of k-fold cross-valid</p></li>
+<li><p><strong>use_index</strong> (<em>boolean value</em>) – If <cite>True</cite>, it will read sample file by index.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.task.doublet.ConvClassifyDataset.sampler">
+<code class="sig-name descname">sampler</code><span class="sig-paren">(</span><em class="sig-param">subset: torch.utils.data.dataset.Subset</em><span class="sig-paren">)</span> &#x2192; torch.utils.data.sampler.WeightedRandomSampler<a class="headerlink" href="#socube.task.doublet.ConvClassifyDataset.sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate weighted random sampler for a subset of this dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>subset</strong> (<em>Subset</em>) – the subset of this dataset</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Weighted random sampler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.task.doublet.ConvClassifyDataset.typeCounts">
+<em class="property">property </em><code class="sig-name descname">typeCounts</code><a class="headerlink" href="#socube.task.doublet.ConvClassifyDataset.typeCounts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Numbers of different types</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.generateDoublet">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">generateDoublet</code><span class="sig-paren">(</span><em class="sig-param">samples: pandas.core.frame.DataFrame</em>, <em class="sig-param">ratio: float = 1.0</em>, <em class="sig-param">adj: float = 1.0</em>, <em class="sig-param">seed: Optional[int] = None</em>, <em class="sig-param">size: Optional[int] = None</em>, <em class="sig-param">mode: Optional[str] = 'balance'</em><span class="sig-paren">)</span> &#x2192; Tuple[pandas.core.frame.DataFrame]<a class="headerlink" href="#socube.task.doublet.generateDoublet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate training set from samples. in silico doublet
+will be simulated as positive samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<em>pd.DataFrame</em>) – the samples dataframe, with row as cells (droplets, simples)
+and column as genes.</p></li>
+<li><p><strong>ratio</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The ratio of the number of doublet and singlet.</p></li>
+<li><p><strong>adj</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The adjustment factor for the doublet expression level. Generally,
+doublet is considered to have twice the gene expression level of
+singlet, but this is not necessarily the case in some cases. The gene
+expression level of the generated doublet is adjusted by the
+adjustment factor.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – The random seed for the generation of the doublet.</p></li>
+<li><p><strong>size</strong> (<em>int</em><em>, </em><em>default None</em>) – The size of the generated training set. If <cite>None</cite>, the size of the
+training set will be the same as the size of the samples.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>default &quot;balance&quot;</em>) – The mode of the generated training set. If “heterotypic”, heterotypic
+doublet will be majority. If “homotypic”, homotypic doublet will be
+majority. If “balance”, the number of heterotypic and homotypic
+doublet will be balanced.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>a tuple of two pd.DataFrame, the first is the positive (doublet) samples,</em></p></li>
+<li><p><em>the second is the negative (singlet) samples.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.fit">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">home_dir: str</em>, <em class="sig-param">data_dir: str</em>, <em class="sig-param">lr: float = 0.001</em>, <em class="sig-param">gamma: float = 0.99</em>, <em class="sig-param">epochs: int = 100</em>, <em class="sig-param">train_batch: int = 32</em>, <em class="sig-param">valid_batch: int = 500</em>, <em class="sig-param">transform: torch.nn.modules.module.Module = None</em>, <em class="sig-param">in_channels: int = 10</em>, <em class="sig-param">num_workers: int = 0</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">label_file: str = 'label.csv'</em>, <em class="sig-param">threshold: float = 0.5</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">once: bool = False</em>, <em class="sig-param">use_index: bool = True</em>, <em class="sig-param">gpu_ids: List[str] = None</em>, <em class="sig-param">step: int = 5</em>, <em class="sig-param">model_id: str = None</em>, <em class="sig-param">pretrain_model_path: str = None</em>, <em class="sig-param">max_acc_limit: float = 1.0</em>, <em class="sig-param">multi_process: bool = False</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.task.doublet.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Train socube model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>home_dir</strong> (<em>str</em>) – the home directory of the specfic job</p></li>
+<li><p><strong>data_dir</strong> (<em>str</em>) – the dataset’s directory</p></li>
+<li><p><strong>lr</strong> (<em>float</em>) – learning rate, default: 0.001</p></li>
+<li><p><strong>gamma</strong> (<em>float</em>) – learning rate decay, default: 0.99</p></li>
+<li><p><strong>epochs</strong> (<em>int</em>) – training epochs, default: 100</p></li>
+<li><p><strong>train_batch</strong> (<em>int</em>) – training batch size, default: 32</p></li>
+<li><p><strong>valid_batch</strong> (<em>int</em>) – validation batch size, default: 500</p></li>
+<li><p><strong>transform</strong> (<em>nn.Module</em>) – sample transform, such as <cite>Resize</cite></p></li>
+<li><p><strong>in_channels</strong> (<em>int</em>) – the number of input channels, default: 10</p></li>
+<li><p><strong>num_workers</strong> (<em>int</em>) – the number of workers for data loading, default: 0</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em>) – if <cite>True</cite>, data will be shuffled while k-fold cross-valid</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – random seed for k-fold cross-valid or sample</p></li>
+<li><p><strong>label_file</strong> (<em>str</em>) – the label file csv name, default: “label.csv”,</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – the threshold for classification, default: 0.5</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – k value of k-fold cross-valid</p></li>
+<li><p><strong>once</strong> (<em>bool</em>) – if <cite>True</cite>, k-fold cross-validation runs first fold only</p></li>
+<li><p><strong>use_index</strong> (<em>bool</em>) – If <cite>True</cite>, it will read sample file by index. Otherwise, it will read
+sample file by sample name.</p></li>
+<li><p><strong>device_name</strong> (<em>str</em>) – the device name, default: “cpu”</p></li>
+<li><p><strong>step</strong> (<em>int</em>) – the epoch step of learning rate decay, default: 5</p></li>
+<li><p><strong>model_id</strong> (<em>str</em>) – the model id, If <cite>None</cite>, it will be generated automatically</p></li>
+<li><p><strong>pretrain_model_path</strong> (<em>str</em>) – the pretrain model path, if not <cite>None</cite>, it will load the pretrain model</p></li>
+<li><p><strong>max_acc_limit</strong> (<em>float</em>) – the max accuracy limit, if the accuracy is higher than this limit, the
+training will stop to prevent overfitting.</p></li>
+<li><p><strong>multi_process</strong> (<em>bool</em>) – if <cite>True</cite>, it will use multi-process to train the model.</p></li>
+<li><p><strong>**kwargs</strong> (<em>dict</em>) – the other parameters wanted to be saved in the log file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>job id string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.validate">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">validate</code><span class="sig-paren">(</span><em class="sig-param">data_loader: torch.utils.data.dataloader.DataLoader</em>, <em class="sig-param">model: socube.net._base.NetBase</em>, <em class="sig-param">device: torch.device</em>, <em class="sig-param">with_progress: bool = False</em><span class="sig-paren">)</span> &#x2192; tuple<a class="headerlink" href="#socube.task.doublet.validate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate model performance basically</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataLoader</strong> (<em>the torch dataloader object used for validation</em>) – </p></li>
+<li><p><strong>model</strong> (Network model implemented <cite>NetBase</cite>) – the model waited for validation</p></li>
+<li><p><strong>device</strong> (<em>the cpu/gpu device</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a quadra tuple of (average loss, average ACC, true label, predict score)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.infer">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">infer</code><span class="sig-paren">(</span><em class="sig-param">data_dir: str</em>, <em class="sig-param">home_dir: str</em>, <em class="sig-param">model_id: str</em>, <em class="sig-param">label_file: str</em>, <em class="sig-param">in_channels: int = 10</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">threshold: float = 0.5</em>, <em class="sig-param">batch_size: int = 400</em>, <em class="sig-param">gpu_ids: List[str] = None</em>, <em class="sig-param">with_eval: bool = False</em>, <em class="sig-param">seed: Optional[int] = None</em>, <em class="sig-param">multi_process: bool = False</em>, <em class="sig-param">once: bool = False</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.infer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model inference</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>str</em>) – the directory of data</p></li>
+<li><p><strong>home_dir</strong> (<em>str</em>) – the home directory of output</p></li>
+<li><p><strong>model_id</strong> (<em>str</em>) – the id of model</p></li>
+<li><p><strong>label_file</strong> (<em>str</em>) – the label file used to inference</p></li>
+<li><p><strong>in_channels</strong> (<em>int</em>) – the number of input channels</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – k value for k-fold cross validation</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – the threshold for binary classification</p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – the batch size for inference</p></li>
+<li><p><strong>gpu_ids</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – the list of gpu ids</p></li>
+<li><p><strong>with_eval</strong> (<em>bool</em>) – whether to evaluate the model performance</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – the seed for random</p></li>
+<li><p><strong>multi_process</strong> (<em>bool</em>) – whether to use multi-process for inference</p></li>
+<li><p><strong>once</strong> (<em>bool</em>) – whether use emsemble for inference</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.checkShape">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">checkShape</code><span class="sig-paren">(</span><em class="sig-param">path: str</em>, <em class="sig-param">shape: tuple = (10</em>, <em class="sig-param">None</em>, <em class="sig-param">None)</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.task.doublet.checkShape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check dataset shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>string</em>) – the dataset’s directory</p></li>
+<li><p><strong>shape</strong> (<em>tuple</em><em>, </em><em>default</em><em> (</em><em>10</em><em>, </em><em>None</em><em>, </em><em>None</em><em>)</em>) – the expected shape of the dataset, None means any shape</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>AssertionError</strong> – if the shape of the dataset is not the same as the expected:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.checkData">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">checkData</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.task.doublet.checkData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data legitimacy verification</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Data to be checked, a dataframe of scRNA-seq data</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If data contains NaN or inf
+    IndexError
+       If data contains duplicate column or row names,
+       or if droplet name begins with “doublet”</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.task.doublet.createTrainData">
+<code class="sig-prename descclassname">socube.task.doublet.</code><code class="sig-name descname">createTrainData</code><span class="sig-paren">(</span><em class="sig-param">samples: pandas.core.frame.DataFrame</em>, <em class="sig-param">output_path: str</em>, <em class="sig-param">ratio: float = 1.0</em>, <em class="sig-param">adj: float = 1.0</em>, <em class="sig-param">seed: Optional[int] = None</em>, <em class="sig-param">mode: Optional[int] = 'balance'</em><span class="sig-paren">)</span> &#x2192; Tuple[pandas.core.generic.NDFrame]<a class="headerlink" href="#socube.task.doublet.createTrainData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Based on the original data, doublets are generated as
+the positive data and a subset of the original data is used
+as the negative data to obtain the training dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<em>pd.DataFrame</em>) – Original data, a dataframe of scRNA-seq data. Shape is (n_droplets, n_genes)</p></li>
+<li><p><strong>output_path</strong> (<em>str</em>) – Path to save the generated training data.</p></li>
+<li><p><strong>ratio</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The ratio of the number of doublet and singlet.</p></li>
+<li><p><strong>adj</strong> (<em>float</em><em>, </em><em>default 1.0</em>) – The adjustment factor for the doublet expression level. Generally,
+doublet is considered to have twice the gene expression level of
+singlet, but this is not necessarily the case in some cases. The gene
+expression level of the generated doublet is adjusted by the
+adjustment factor.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – The random seed for the generation of the doublet.</p></li>
+<li><p><strong>mode</strong> (<em>str</em><em>, </em><em>default &quot;balance&quot;</em>) – The mode of the generated training set. If “heterotypic”, heterotypic
+doublet will be majority. If “homotypic”, homotypic doublet will be
+majority. If “balance”, the number of heterotypic and homotypic doublet
+will be balanced. see <cite>generateDoublet</cite> for more details.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A tuple of NDFrames. The first element is training data, the second element</em></p></li>
+<li><p><em>is the training label.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Zhang.H.N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

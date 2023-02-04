@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>socube.net package &mdash; SoCube 1.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SoCube
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">socube.net package</a><ul>
+<li><a class="reference internal" href="#module-socube.net">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SoCube</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">socube.net package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/socube.net.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="socube-net-package">
+<h1>socube.net package<a class="headerlink" href="#socube-net-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-socube.net">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-socube.net" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.net.InceptionBlock2D">
+<em class="property">class </em><code class="sig-prename descclassname">socube.net.</code><code class="sig-name descname">InceptionBlock2D</code><span class="sig-paren">(</span><em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">nums: int = 3</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.net.InceptionBlock2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socube.net._base.ModuleBase</span></code></p>
+<p>Inception block with multiple conv kernels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<em>integer scalar value</em>) – input data’s channel count</p></li>
+<li><p><strong>out_channels</strong> (<em>integer scalar value</em>) – output data’s channel count,
+it must be a multiple of <cite>num</cite></p></li>
+<li><p><strong>nums</strong> (<em>integer scalar value</em>) – Number of convolution kernels</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iblock</span> <span class="o">=</span> <span class="n">InceptionBlock2D</span><span class="p">(</span><span class="mi">48</span><span class="p">,</span> <span class="mi">96</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="socube.net.InceptionBlock2D.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.net.InceptionBlock2D.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data forward for a neural network waited to be implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – The input data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The output data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="socube.net.InceptionBlock2D.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#socube.net.InceptionBlock2D.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.net.InceptionBlock2DLayer">
+<em class="property">class </em><code class="sig-prename descclassname">socube.net.</code><code class="sig-name descname">InceptionBlock2DLayer</code><span class="sig-paren">(</span><em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.net.InceptionBlock2DLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socube.net._base.ModuleBase</span></code></p>
+<p>Inception block with multiple layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<em>integer scalar value</em>) – input data’s channel count</p></li>
+<li><p><strong>out_channels</strong> (<em>integer scalar value</em>) – output data’s channel count</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.net.InceptionBlock2DLayer.forward">
+<code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.net.InceptionBlock2DLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data forward for a neural network waited to be implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – The input data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The output data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="socube.net.InceptionBlock2DLayer.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#socube.net.InceptionBlock2DLayer.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.net.ModuleMetaBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.net.</code><code class="sig-name descname">ModuleMetaBase</code><a class="headerlink" href="#socube.net.ModuleMetaBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABCMeta</span></code></p>
+<p>Metaclass for all neural network model implemented in this package.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> (<em>type</em>) – The class being created, which is a instance of ModuleMetaBase and
+a subclass of torch.nn.Module.</p></li>
+<li><p><strong>in_channels</strong> (<em>int</em>) – The number of input channels. Any type created by this metaclass
+must contain this constructor parameter.</p></li>
+<li><p><strong>out_channels</strong> (<em>int</em>) – The number of output channels. Any type created by this metaclass
+must contain this constructor parameter.</p></li>
+<li><p><strong>*args</strong> (<em>Any</em>) – The arguments for the class constructor</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – The keyword arguments for the class constructor</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>A new instance of the class being created.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.net.NetBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.net.</code><code class="sig-name descname">NetBase</code><span class="sig-paren">(</span><em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">shape: Tuple[int] = None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.net.NetBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socube.net._base.ModuleBase</span></code></p>
+<p>Basic abstract class of all neural network models.
+Any subclass of this class must implement the following
+abstract methods:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<em>int</em>) – The number of input channels.</p></li>
+<li><p><strong>out_channels</strong> (<em>int</em>) – The number of output channels.</p></li>
+<li><p><strong>shape</strong> (<em>Tuple</em><em>[</em><em>int</em><em>]</em>) – The shape of a sample.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.net.NetBase.criterion">
+<em class="property">abstract </em><code class="sig-name descname">criterion</code><span class="sig-paren">(</span><em class="sig-param">y_predict: torch.Tensor</em>, <em class="sig-param">y_true: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.net.NetBase.criterion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract methods to calculate the loss of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_predict</strong> (<em>torch.Tensor</em>) – The predicted data.</p></li>
+<li><p><strong>y_true</strong> (<em>torch.Tensor</em>) – The true data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The loss of the model.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.net.NetBase.shape">
+<em class="property">property </em><code class="sig-name descname">shape</code><a class="headerlink" href="#socube.net.NetBase.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the shape of a sample.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>The shape of a sample.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="socube.net.NetBase.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#socube.net.NetBase.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.net.ModuleBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.net.</code><code class="sig-name descname">ModuleBase</code><span class="sig-paren">(</span><em class="sig-param">in_channels: int</em>, <em class="sig-param">out_channels: int</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.net.ModuleBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.nn.modules.module.Module</span></code></p>
+<p>Basical abstract class of all neural network modules.
+Any subclass of this class must implement the following
+abstract methods:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_channels</strong> (<em>int</em>) – The number of input channels.</p></li>
+<li><p><strong>out_channels</strong> (<em>int</em>) – The number of output channels.</p></li>
+<li><p><strong>**kwargs</strong> (<em>Any</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.net.ModuleBase.forward">
+<em class="property">abstract </em><code class="sig-name descname">forward</code><span class="sig-paren">(</span><em class="sig-param">x: torch.Tensor</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.net.ModuleBase.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data forward for a neural network waited to be implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> (<em>torch.Tensor</em>) – The input data.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The output data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.net.ModuleBase.freeze">
+<code class="sig-name descname">freeze</code><span class="sig-paren">(</span><em class="sig-param">layer: torch.nn.modules.module.Module</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.net.ModuleBase.freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Freeze parameters of a layer and its sublayers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer</strong> (<em>Module</em>) – The layer to be frozen.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.net.ModuleBase.parameters">
+<code class="sig-name descname">parameters</code><span class="sig-paren">(</span><em class="sig-param">recurse: bool = True</em>, <em class="sig-param">skip_no_grad: bool = False</em><span class="sig-paren">)</span> &#x2192; Iterator[torch.nn.parameter.Parameter]<a class="headerlink" href="#socube.net.ModuleBase.parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return model paramters with or without no grad parameters.
+If some layers are freezed, these parameters should not be
+updated by optimizer. Though no grad parameters won’t be
+updated even if they are sent to optimizer. But it is a waste
+of calculation resource.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>recurse</strong> (<em>bool</em>) – If True, return all parameters of all sublayers.</p></li>
+<li><p><strong>skip_no_grad</strong> (<em>bool</em><em>, </em><em>default False</em>) – <dl class="simple">
+<dt>If True, return all parameters with grad.</dt><dd><p>it advised set as True when using optimizer</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>An iterator of all parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="socube.net.ModuleBase.training">
+<code class="sig-name descname">training</code><em class="property"> = None</em><a class="headerlink" href="#socube.net.ModuleBase.training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="socube.net.ModuleBase.unfreeze">
+<code class="sig-name descname">unfreeze</code><span class="sig-paren">(</span><em class="sig-param">layer: torch.nn.modules.module.Module</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#socube.net.ModuleBase.unfreeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfreeze parameters of a layer and its sublayers</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer</strong> (<em>Module</em>) – The layer to be unfrozen.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Zhang.H.N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>socube.data package &mdash; SoCube 1.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> SoCube
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">socube.data package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-socube.data.loading">socube.data.loading module</a></li>
+<li><a class="reference internal" href="#module-socube.data.preprocess">socube.data.preprocess module</a></li>
+<li><a class="reference internal" href="#module-socube.data.visualize">socube.data.visualize module</a></li>
+<li><a class="reference internal" href="#module-socube.data">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SoCube</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">socube.data package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/socube.data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="socube-data-package">
+<h1>socube.data package<a class="headerlink" href="#socube-data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-socube.data.loading">
+<span id="socube-data-loading-module"></span><h2>socube.data.loading module<a class="headerlink" href="#module-socube.data.loading" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="socube.data.loading.DatasetBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.data.loading.</code><code class="sig-name descname">DatasetBase</code><span class="sig-paren">(</span><em class="sig-param">labels: pandas.core.frame.DataFrame</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">task_type: str = 'classify'</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.loading.DatasetBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<p>Abstract base class for datasets. All SoCube extended
+datasets must inherit and implement its abstract interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>pd.DataFrame</em>) – Dataframe containing labels for each sample.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to shuffle each class’s samples before splitting into batches.
+Note that the samples within each split will not be shuffled.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – Random seed for shuffling.</p></li>
+<li><p><strong>k</strong> (<em>int</em><em>, </em><em>default 5</em>) – Number of folds for k-fold cross-validation.</p></li>
+<li><p><strong>task_type</strong> (<em>str</em><em>, </em><em>default &quot;classify&quot;</em>) – Type of task. Must be one of “classify”, “regress”.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.data.loading.DatasetBase.kFold">
+<em class="property">property </em><code class="sig-name descname">kFold</code><a class="headerlink" href="#socube.data.loading.DatasetBase.kFold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get generator for k-fold cross-validation dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>kFold</strong> – An generator for k-fold cross-validation dataset. Each iteration
+generates a tuple of two Subset objects for training and validating</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>generator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.data.loading.DatasetBase.sampler">
+<em class="property">abstract </em><code class="sig-name descname">sampler</code><span class="sig-paren">(</span><em class="sig-param">subset: torch.utils.data.dataset.Subset</em><span class="sig-paren">)</span> &#x2192; torch.utils.data.sampler.Sampler<a class="headerlink" href="#socube.data.loading.DatasetBase.sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method for sampling a subset of this dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>subset</strong> (<em>Subset</em>) – A subset of this dataset.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sampler</strong> – A sampler for the subset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Sampler</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.data.loading.ConvDatasetBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.data.loading.</code><code class="sig-name descname">ConvDatasetBase</code><span class="sig-paren">(</span><em class="sig-param">data_dir: str</em>, <em class="sig-param">labels: pandas.core.frame.DataFrame</em>, <em class="sig-param">transform: torch.nn.modules.module.Module = None</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">task_type: str = 'classify'</em>, <em class="sig-param">use_index: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.loading.ConvDatasetBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.data.loading.DatasetBase" title="socube.data.loading.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.data.loading.DatasetBase</span></code></a></p>
+<p>Basical dataset designed for CNN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>str</em>) – Path to the directory containing dataset.</p></li>
+<li><p><strong>labels</strong> (<em>pd.DataFrame</em>) – Dataframe containing labels for each sample.</p></li>
+<li><p><strong>transform</strong> (<em>torch.nn.Module</em><em>, </em><em>default None</em>) – Transform to apply to each sample.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to shuffle each class’s samples before splitting into batches.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – Random seed for shuffling.</p></li>
+<li><p><strong>k</strong> (<em>int</em><em>, </em><em>default 5</em>) – Number of folds for k-fold cross-validation.</p></li>
+<li><p><strong>task_type</strong> (<em>str</em><em>, </em><em>default &quot;classify&quot;</em>) – Type of task. Must be one of “classify”, “regress”.</p></li>
+<li><p><strong>use_index</strong> (<em>bool</em><em>, </em><em>default True</em>) – Whether to use the numeric index as the sample file name, such as “0.npy”,
+if <cite>False</cite>, then use the sample name in the labels as the sample file name,
+such as “sample_name.npy”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.data.preprocess">
+<span id="socube-data-preprocess-module"></span><h2>socube.data.preprocess module<a class="headerlink" href="#module-socube.data.preprocess" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.data.preprocess.summary">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">axis: int = 1</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data summary for each column or row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe with row and column</p></li>
+<li><p><strong>axis</strong> (<em>int</em><em>, </em><em>default 1</em>) – 0 for summary for column, 1 for summary for row</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with summary for each column or row</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.filterData">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">filterData</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">filtered_gene_prop: float = 0.05</em>, <em class="sig-param">filtered_cell_prop: float = 0.05</em>, <em class="sig-param">mini_expr: float = 0.05</em>, <em class="sig-param">mini_library_size: int = 1000</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.filterData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove genes and cells which have low variation with given proportions and
+remove genes whose average expression less then <cite>mini_expr</cite> and remove cells
+whose cell library size less then <cite>mini_library_size</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe, which row is gene and column is cell</p></li>
+<li><p><strong>filtered_gene_prop</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Remove genes with low variation with this proportion</p></li>
+<li><p><strong>filtered_cell_prop</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Remove cells with low variation with this proportion</p></li>
+<li><p><strong>mini_expr</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Remove genes whose average expression less then <cite>mini_expr</cite></p></li>
+<li><p><strong>mini_library_size</strong> (<em>int</em><em>, </em><em>default 1000</em>) – Remove cells whose cell library size less then <cite>mini_library_size</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with filtered genes and cells</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.minmax">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">minmax</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">range: Tuple[int] = (0</em>, <em class="sig-param">1)</em>, <em class="sig-param">flag: int = 0</em>, <em class="sig-param">dtype: str = 'float32'</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.minmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform maximum-minimum normalization</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe, which row is sample and column is feature</p></li>
+<li><p><strong>range</strong> (<em>tuple</em><em>, </em><em>default</em><em> (</em><em>0</em><em>, </em><em>1</em><em>)</em>) – The maximum and minimum values of the normalized
+data, normalized to 0~1 by default</p></li>
+<li><p><strong>flag</strong> (<em>int</em><em>, </em><em>default 0</em>) – Equal to 0 for minmax by columns, greater than 0 for minmax by
+rows, less than 0 for minmax by global.</p></li>
+<li><p><strong>dtype</strong> (<em>str</em><em>, </em><em>default &quot;float32&quot;</em>) – The data type of the normalized data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with normalized data</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">minmax</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.std">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">std</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">horizontal: bool = False</em>, <em class="sig-param">dtype: str = 'float32'</em>, <em class="sig-param">global_minmax: bool = False</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.std" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standardization of data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe, which row is sample and column is feature</p></li>
+<li><p><strong>horizontal</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, perform standardization horizontally</p></li>
+<li><p><strong>dtype</strong> (<em>str</em><em>, </em><em>default &quot;float32&quot;</em>) – The data type of the standardized data</p></li>
+<li><p><strong>global_minmax</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, perform global standardization,
+otherwise standardization by row or column</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with standardized data</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.cosineDistanceMatrix">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">cosineDistanceMatrix</code><span class="sig-paren">(</span><em class="sig-param">x1: torch.Tensor</em>, <em class="sig-param">x2: torch.Tensor = None</em>, <em class="sig-param">device_name: str = 'cpu'</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.data.preprocess.cosineDistanceMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the cosine distance matrix between the two sets of samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> (<em>torch.Tensor</em>) – a tensor of samples, with shape (n1, d)</p></li>
+<li><p><strong>x2</strong> (<em>torch.Tensor</em><em>, </em><em>default None</em>) – a tensor of samples, with shape (n2, d), if None, x2 = x1</p></li>
+<li><p><strong>device_name</strong> (<em>str</em><em>, </em><em>default &quot;cpu&quot;</em>) – the device used for accelerating the calculation
+such as “cpu”, “cuda:0”, “cuda:1”, etc.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a tensor of cosine distance matrix, with shape (n1, n2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">cosineDistanceMatrix</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.scatterToGrid">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">scatterToGrid</code><span class="sig-paren">(</span><em class="sig-param">scatters2d: torch.Tensor</em>, <em class="sig-param">transform: Tuple[int] = (1</em>, <em class="sig-param">-1)</em>, <em class="sig-param">device_name: str = 'cpu'</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.data.preprocess.scatterToGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scattered coordinates-grid coordinate mapping
+based on J-V linear assignment algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scatters2d</strong> (<em>torch.Tensor</em>) – a tensor of scattered coordinates, with shape (n, 2)</p></li>
+<li><p><strong>transform</strong> (<em>tuple</em><em>, </em><em>default</em><em> (</em><em>1</em><em>, </em><em>-1</em><em>)</em>) – the transformation of the coordinates, such as (1, -1).
+Greater than 0 means that the corresponding coordinates
+do not change direction, less than 0 means that the
+corresponding coordinates are reversed. For scatter and grid plots,
+the y-axis directions are often opposite, and for visual
+consistency, the y-axis needs to be transformed</p></li>
+<li><p><strong>device_name</strong> (<em>str</em><em>, </em><em>default &quot;cpu&quot;</em>) – the device used for accelerating the calculation
+such as “cpu”, “cuda:0”, “cuda:1”, etc.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a tensor of grid coordinates, with shape (n, 2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scatters2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">scatterToGrid</span><span class="p">(</span><span class="n">scatters2d</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.umap2D">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">umap2D</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">metric: str = 'correlation'</em>, <em class="sig-param">neighbors: int = 5</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.umap2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reducing high-dimensional data to 2D using UMAP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – a dataframe of high-dimensional data, with shape (n, d).
+n is the number of samples, d is the dimension of the data</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>default 'correlation'</em>) – the metric used for calculating the distance between samples.
+such as ‘correlation’, ‘euclidean’, ‘manhattan’, etc.</p></li>
+<li><p><strong>neighbors</strong> (<em>int</em><em>, </em><em>default 5</em>) – the number of neighbors used for UMAP.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – the random seed used for UMAP.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe of two-dimensional data, with shape (n, 2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">umap2D</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.tsne2D">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">tsne2D</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">metric: str = 'correlation'</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.tsne2D" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Reducing high-dimensional data to 2D using t-SNE</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – a dataframe of high-dimensional data, with shape (n, d).
+n is the number of samples, d is the dimension of the data</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>default 'correlation'</em>) – the metric used for calculating the distance between samples.
+such as ‘correlation’, ‘euclidean’, ‘manhattan’, etc.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – the random seed used for t-SNE.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe of two-dimensional data, with shape (n, 2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">tsne2D</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.vec2Grid">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">vec2Grid</code><span class="sig-paren">(</span><em class="sig-param">vector: numpy.ndarray</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.vec2Grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a one-dimensional vector to a two-dimensional grid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> (<em>np.ndarray</em>) – a one-dimensional vector, with shape (n,).
+n is the number of samples</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>default False</em>) – whether to shuffle the vector</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – the random seed used for shuffling the vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>a dataframe of two-dimensional data, with shape (n, 2),</em></p></li>
+<li><p><em>each row represents a grid point with horizontal (x) and vertical (y) coordinates</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">vec2Grid</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.onehot">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">onehot</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">class_nums: int = None</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#socube.data.preprocess.onehot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert 1D multi-label vector (each element is a sample’s label)
+to onehot matrix. The label should be a integer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – a one-dimensional integer vector, with shape (n,).
+n is the number of samples</p></li>
+<li><p><strong>class_nums</strong> (<em>int</em><em>, </em><em>default None</em>) – the number of classes. If None, the number of classes is
+automatically determined.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a ndarray of onehot matrix with shape (n, class_nums)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">onehot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
+<span class="go">array([[0, 1, 0, 0, 0],</span>
+<span class="go">    [0, 0, 1, 0, 0],</span>
+<span class="go">    [0, 0, 0, 0, 1]], dtype=int32)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">onehot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]),</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">array([[0, 1, 0, 0, 0, 0],</span>
+<span class="go">    [0, 0, 1, 0, 0, 0],</span>
+<span class="go">    [0, 0, 0, 0, 1, 0]], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.preprocess.items">
+<code class="sig-prename descclassname">socube.data.preprocess.</code><code class="sig-name descname">items</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.preprocess.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a dataFrame to a dataframe with row, col, val three columns</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with row, col, val three columns</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.data.visualize">
+<span id="socube-data-visualize-module"></span><h2>socube.data.visualize module<a class="headerlink" href="#module-socube.data.visualize" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.data.visualize.getHeatColor">
+<code class="sig-prename descclassname">socube.data.visualize.</code><code class="sig-name descname">getHeatColor</code><span class="sig-paren">(</span><em class="sig-param">intensity: float</em>, <em class="sig-param">topColor: str</em>, <em class="sig-param">bottomColor: str = '#ffffff'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.data.visualize.getHeatColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculation of heat map color values based on intensity values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intensity</strong> (<em>float value</em>) – color intensity values between 0 and 1</p></li>
+<li><p><strong>topColor</strong> (<em>hexadecimal color string</em>) – Color value when intensity value is 1</p></li>
+<li><p><strong>bottomColor</strong> (<em>hexadecimal color string</em>) – Color value when intensity value is 0, default is white</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The hexadecimal color string corresponding to the intensity</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getHeatColor</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;#ff0000&quot;</span><span class="p">)</span>
+<span class="go">&#39;#ff7f7f&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.visualize.convertHexToRGB">
+<code class="sig-prename descclassname">socube.data.visualize.</code><code class="sig-name descname">convertHexToRGB</code><span class="sig-paren">(</span><em class="sig-param">hex_color: str</em><span class="sig-paren">)</span> &#x2192; Tuple[int]<a class="headerlink" href="#socube.data.visualize.convertHexToRGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert hexadecimal color strings to RGB tri-color integer tuples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hex_color</strong> (<em>hexadecimal color string</em><em>, </em><em>such as '#ff0000'</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>RGB tri-color integer tuples</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hexToRGB</span><span class="p">(</span><span class="s1">&#39;#ff0000&#39;</span><span class="p">)</span>
+<span class="go">(255, 0, 0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.visualize.convertRGBToHex">
+<code class="sig-prename descclassname">socube.data.visualize.</code><code class="sig-name descname">convertRGBToHex</code><span class="sig-paren">(</span><em class="sig-param">color: Tuple[int]</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.data.visualize.convertRGBToHex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert RGB tricolor integer tuple to hexadecimal color string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> (<em>RGB tricolor integer tuple</em>) – such as (255, 0, 0)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>hexadecimal color string, such as ‘#ff0000’</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rgbToHex</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="go">&#39;#ff0000&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.visualize.plotScatter">
+<code class="sig-prename descclassname">socube.data.visualize.</code><code class="sig-name descname">plotScatter</code><span class="sig-paren">(</span><em class="sig-param">data2d: pandas.core.frame.DataFrame, colormap: Dict[str, str], title: str, subtitle: str, filename: str = None, scatter_symbol: str = 'circle', width: int = 1000, height: int = 850, radius: int = 3, x_min: Optional[int] = None, y_min: Optional[int] = None, x_max: Optional[int] = None, y_max: Optional[int] = None, x_title: Optional[str] = None, y_title: Optional[str] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.visualize.plotScatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the scatter image of socube</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data2d</strong> (<em>pandas.DataFrame</em>) – The data to be plotted, with columns of x, y, label and subtype,
+if subtype is float, it regarded as intensity value, and the color will be
+calculated based on the intensity value.</p></li>
+<li><p><strong>colormap</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – The color map for the subtype, with key as subtype name and value
+as hexadecimal color string. If the subtype is float, colormap’s key
+should be ‘0’ and ‘1’, ‘0’ for low intensity color and ‘1’ for high intensity color.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title of the plot</p></li>
+<li><p><strong>subtitle</strong> (<em>str</em>) – The subtitle of the plot</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename of the plot, if None, the plot will not be saved. format is html and
+the filename extension will automatically be added and you should not add it.</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – The width of the plot, unit is pixel</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – The height of the plot, unit is pixel</p></li>
+<li><p><strong>radius</strong> (<em>int</em>) – The radius of the scatter point, unit is pixel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The plot object</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data2d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="s1">&#39;subtype&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">colormap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;#ff0000&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;#00ff00&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotScatter</span><span class="p">(</span><span class="n">data2d</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitle&#39;</span><span class="p">,</span> <span class="s1">&#39;test.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.visualize.plotGrid">
+<code class="sig-prename descclassname">socube.data.visualize.</code><code class="sig-name descname">plotGrid</code><span class="sig-paren">(</span><em class="sig-param">data2d: pandas.core.frame.DataFrame, colormap: Dict[str, str], shape: Tuple[int], title: str, subtitle: str, filename: str, width: int = 1000, height: int = 850</em><span class="sig-paren">)</span> &#x2192; highcharts.highcharts.highcharts.Highchart<a class="headerlink" href="#socube.data.visualize.plotGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw socube’s Grid image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data2d</strong> (<em>pandas.DataFrame</em>) – The data to be plotted, with columns of x, y, label and subtype,
+if subtype is float, it regarded as intensity value, and the color will be
+calculated based on the intensity value.</p></li>
+<li><p><strong>colormap</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – The color map for the subtype, with key as subtype name and value
+as hexadecimal color string. If the subtype is float, colormap’s key
+should be ‘0’ and ‘1’, ‘0’ for low intensity color and ‘1’ for high intensity color.</p></li>
+<li><p><strong>shape</strong> (<em>Tuple</em><em>[</em><em>int</em><em>]</em>) – The shape of the grid, (row, col)</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title of the plot</p></li>
+<li><p><strong>subtitle</strong> (<em>str</em>) – The subtitle of the plot</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename of the plot, if None, the plot will not be saved. format is html and
+the filename extension will automatically be added and you should not add it.</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – The width of the plot, unit is pixel</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – The height of the plot, unit is pixel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The plot object</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data2d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="s1">&#39;subtype&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">colormap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;#ff0000&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;#00ff00&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotGrid</span><span class="p">(</span><span class="n">data2d</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitle&#39;</span><span class="p">,</span> <span class="s1">&#39;test.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.visualize.plotAUC">
+<code class="sig-prename descclassname">socube.data.visualize.</code><code class="sig-name descname">plotAUC</code><span class="sig-paren">(</span><em class="sig-param">data: Dict[str, Tuple[Sequence]], title: str, xlabel: str, ylabel: str, file: Optional[str] = None, slash: int = 0</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.visualize.plotAUC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a AUC curve</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Tuple</em><em>[</em><em>Sequence</em><em>]</em><em>]</em>) – The data to be plotted, with key as the name of the curve and value
+as the (x, y) data.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title of the plot</p></li>
+<li><p><strong>xlabel</strong> (<em>str</em>) – The xlabel of the plot</p></li>
+<li><p><strong>ylabel</strong> (<em>str</em>) – The ylabel of the plot</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – The filename of the plot, if None, the plot will not be saved</p></li>
+<li><p><strong>slash</strong> (<em>int</em>) – if <cite>slash</cite> is positve, will plot a forward slash,
+if <cite>slash</cite> is negative, will plot a back slash.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AUC&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]),</span> <span class="s1">&#39;AUC2&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotAUC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;xlabel&#39;</span><span class="p">,</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">,</span> <span class="s1">&#39;auc.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-socube.data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-socube.data" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="socube.data.summary">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">axis: int = 1</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data summary for each column or row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe with row and column</p></li>
+<li><p><strong>axis</strong> (<em>int</em><em>, </em><em>default 1</em>) – 0 for summary for column, 1 for summary for row</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with summary for each column or row</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.filterData">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">filterData</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">filtered_gene_prop: float = 0.05</em>, <em class="sig-param">filtered_cell_prop: float = 0.05</em>, <em class="sig-param">mini_expr: float = 0.05</em>, <em class="sig-param">mini_library_size: int = 1000</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.filterData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove genes and cells which have low variation with given proportions and
+remove genes whose average expression less then <cite>mini_expr</cite> and remove cells
+whose cell library size less then <cite>mini_library_size</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe, which row is gene and column is cell</p></li>
+<li><p><strong>filtered_gene_prop</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Remove genes with low variation with this proportion</p></li>
+<li><p><strong>filtered_cell_prop</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Remove cells with low variation with this proportion</p></li>
+<li><p><strong>mini_expr</strong> (<em>float</em><em>, </em><em>default 0.05</em>) – Remove genes whose average expression less then <cite>mini_expr</cite></p></li>
+<li><p><strong>mini_library_size</strong> (<em>int</em><em>, </em><em>default 1000</em>) – Remove cells whose cell library size less then <cite>mini_library_size</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with filtered genes and cells</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.minmax">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">minmax</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">range: Tuple[int] = (0</em>, <em class="sig-param">1)</em>, <em class="sig-param">flag: int = 0</em>, <em class="sig-param">dtype: str = 'float32'</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.minmax" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform maximum-minimum normalization</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe, which row is sample and column is feature</p></li>
+<li><p><strong>range</strong> (<em>tuple</em><em>, </em><em>default</em><em> (</em><em>0</em><em>, </em><em>1</em><em>)</em>) – The maximum and minimum values of the normalized
+data, normalized to 0~1 by default</p></li>
+<li><p><strong>flag</strong> (<em>int</em><em>, </em><em>default 0</em>) – Equal to 0 for minmax by columns, greater than 0 for minmax by
+rows, less than 0 for minmax by global.</p></li>
+<li><p><strong>dtype</strong> (<em>str</em><em>, </em><em>default &quot;float32&quot;</em>) – The data type of the normalized data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with normalized data</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">minmax</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.std">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">std</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">horizontal: bool = False</em>, <em class="sig-param">dtype: str = 'float32'</em>, <em class="sig-param">global_minmax: bool = False</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.std" title="Permalink to this definition">¶</a></dt>
+<dd><p>Standardization of data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>dataframe</em>) – a dataframe, which row is sample and column is feature</p></li>
+<li><p><strong>horizontal</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, perform standardization horizontally</p></li>
+<li><p><strong>dtype</strong> (<em>str</em><em>, </em><em>default &quot;float32&quot;</em>) – The data type of the standardized data</p></li>
+<li><p><strong>global_minmax</strong> (<em>bool</em><em>, </em><em>default False</em>) – If True, perform global standardization,
+otherwise standardization by row or column</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with standardized data</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.cosineDistanceMatrix">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">cosineDistanceMatrix</code><span class="sig-paren">(</span><em class="sig-param">x1: torch.Tensor</em>, <em class="sig-param">x2: torch.Tensor = None</em>, <em class="sig-param">device_name: str = 'cpu'</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.data.cosineDistanceMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the cosine distance matrix between the two sets of samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> (<em>torch.Tensor</em>) – a tensor of samples, with shape (n1, d)</p></li>
+<li><p><strong>x2</strong> (<em>torch.Tensor</em><em>, </em><em>default None</em>) – a tensor of samples, with shape (n2, d), if None, x2 = x1</p></li>
+<li><p><strong>device_name</strong> (<em>str</em><em>, </em><em>default &quot;cpu&quot;</em>) – the device used for accelerating the calculation
+such as “cpu”, “cuda:0”, “cuda:1”, etc.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a tensor of cosine distance matrix, with shape (n1, n2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">cosineDistanceMatrix</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.scatterToGrid">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">scatterToGrid</code><span class="sig-paren">(</span><em class="sig-param">scatters2d: torch.Tensor</em>, <em class="sig-param">transform: Tuple[int] = (1</em>, <em class="sig-param">-1)</em>, <em class="sig-param">device_name: str = 'cpu'</em><span class="sig-paren">)</span> &#x2192; torch.Tensor<a class="headerlink" href="#socube.data.scatterToGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scattered coordinates-grid coordinate mapping
+based on J-V linear assignment algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scatters2d</strong> (<em>torch.Tensor</em>) – a tensor of scattered coordinates, with shape (n, 2)</p></li>
+<li><p><strong>transform</strong> (<em>tuple</em><em>, </em><em>default</em><em> (</em><em>1</em><em>, </em><em>-1</em><em>)</em>) – the transformation of the coordinates, such as (1, -1).
+Greater than 0 means that the corresponding coordinates
+do not change direction, less than 0 means that the
+corresponding coordinates are reversed. For scatter and grid plots,
+the y-axis directions are often opposite, and for visual
+consistency, the y-axis needs to be transformed</p></li>
+<li><p><strong>device_name</strong> (<em>str</em><em>, </em><em>default &quot;cpu&quot;</em>) – the device used for accelerating the calculation
+such as “cpu”, “cuda:0”, “cuda:1”, etc.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a tensor of grid coordinates, with shape (n, 2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scatters2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">scatterToGrid</span><span class="p">(</span><span class="n">scatters2d</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.umap2D">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">umap2D</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">metric: str = 'correlation'</em>, <em class="sig-param">neighbors: int = 5</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.umap2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reducing high-dimensional data to 2D using UMAP</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – a dataframe of high-dimensional data, with shape (n, d).
+n is the number of samples, d is the dimension of the data</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>default 'correlation'</em>) – the metric used for calculating the distance between samples.
+such as ‘correlation’, ‘euclidean’, ‘manhattan’, etc.</p></li>
+<li><p><strong>neighbors</strong> (<em>int</em><em>, </em><em>default 5</em>) – the number of neighbors used for UMAP.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – the random seed used for UMAP.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe of two-dimensional data, with shape (n, 2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">umap2D</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.tsne2D">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">tsne2D</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em>, <em class="sig-param">metric: str = 'correlation'</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.tsne2D" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Reducing high-dimensional data to 2D using t-SNE</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pd.DataFrame</em>) – a dataframe of high-dimensional data, with shape (n, d).
+n is the number of samples, d is the dimension of the data</p></li>
+<li><p><strong>metric</strong> (<em>str</em><em>, </em><em>default 'correlation'</em>) – the metric used for calculating the distance between samples.
+such as ‘correlation’, ‘euclidean’, ‘manhattan’, etc.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – the random seed used for t-SNE.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe of two-dimensional data, with shape (n, 2)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">tsne2D</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.vec2Grid">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">vec2Grid</code><span class="sig-paren">(</span><em class="sig-param">vector: numpy.ndarray</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.vec2Grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a one-dimensional vector to a two-dimensional grid</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> (<em>np.ndarray</em>) – a one-dimensional vector, with shape (n,).
+n is the number of samples</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>default False</em>) – whether to shuffle the vector</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – the random seed used for shuffling the vector</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>a dataframe of two-dimensional data, with shape (n, 2),</em></p></li>
+<li><p><em>each row represents a grid point with horizontal (x) and vertical (y) coordinates</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">vec2Grid</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.onehot">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">onehot</code><span class="sig-paren">(</span><em class="sig-param">label: numpy.ndarray</em>, <em class="sig-param">class_nums: int = None</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#socube.data.onehot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert 1D multi-label vector (each element is a sample’s label)
+to onehot matrix. The label should be a integer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>np.ndarray</em>) – a one-dimensional integer vector, with shape (n,).
+n is the number of samples</p></li>
+<li><p><strong>class_nums</strong> (<em>int</em><em>, </em><em>default None</em>) – the number of classes. If None, the number of classes is
+automatically determined.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a ndarray of onehot matrix with shape (n, class_nums)</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">onehot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]))</span>
+<span class="go">array([[0, 1, 0, 0, 0],</span>
+<span class="go">    [0, 0, 1, 0, 0],</span>
+<span class="go">    [0, 0, 0, 0, 1]], dtype=int32)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">onehot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]),</span> <span class="mi">6</span><span class="p">)</span>
+<span class="go">array([[0, 1, 0, 0, 0, 0],</span>
+<span class="go">    [0, 0, 1, 0, 0, 0],</span>
+<span class="go">    [0, 0, 0, 0, 1, 0]], dtype=int32)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.items">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">items</code><span class="sig-paren">(</span><em class="sig-param">data: pandas.core.frame.DataFrame</em><span class="sig-paren">)</span> &#x2192; pandas.core.frame.DataFrame<a class="headerlink" href="#socube.data.items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a dataFrame to a dataframe with row, col, val three columns</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>a dataframe with row, col, val three columns</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">socube.data.preprocess</span> <span class="k">as</span> <span class="nn">pre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pre</span><span class="o">.</span><span class="n">items</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.data.DatasetBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">DatasetBase</code><span class="sig-paren">(</span><em class="sig-param">labels: pandas.core.frame.DataFrame</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">task_type: str = 'classify'</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.DatasetBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">torch.utils.data.dataset.Dataset</span></code></p>
+<p>Abstract base class for datasets. All SoCube extended
+datasets must inherit and implement its abstract interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>pd.DataFrame</em>) – Dataframe containing labels for each sample.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to shuffle each class’s samples before splitting into batches.
+Note that the samples within each split will not be shuffled.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – Random seed for shuffling.</p></li>
+<li><p><strong>k</strong> (<em>int</em><em>, </em><em>default 5</em>) – Number of folds for k-fold cross-validation.</p></li>
+<li><p><strong>task_type</strong> (<em>str</em><em>, </em><em>default &quot;classify&quot;</em>) – Type of task. Must be one of “classify”, “regress”.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="socube.data.DatasetBase.kFold">
+<em class="property">property </em><code class="sig-name descname">kFold</code><a class="headerlink" href="#socube.data.DatasetBase.kFold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get generator for k-fold cross-validation dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>kFold</strong> – An generator for k-fold cross-validation dataset. Each iteration
+generates a tuple of two Subset objects for training and validating</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>generator</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="socube.data.DatasetBase.sampler">
+<em class="property">abstract </em><code class="sig-name descname">sampler</code><span class="sig-paren">(</span><em class="sig-param">subset: torch.utils.data.dataset.Subset</em><span class="sig-paren">)</span> &#x2192; torch.utils.data.sampler.Sampler<a class="headerlink" href="#socube.data.DatasetBase.sampler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method for sampling a subset of this dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>subset</strong> (<em>Subset</em>) – A subset of this dataset.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sampler</strong> – A sampler for the subset.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Sampler</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="socube.data.ConvDatasetBase">
+<em class="property">class </em><code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">ConvDatasetBase</code><span class="sig-paren">(</span><em class="sig-param">data_dir: str</em>, <em class="sig-param">labels: pandas.core.frame.DataFrame</em>, <em class="sig-param">transform: torch.nn.modules.module.Module = None</em>, <em class="sig-param">shuffle: bool = False</em>, <em class="sig-param">seed: int = None</em>, <em class="sig-param">k: int = 5</em>, <em class="sig-param">task_type: str = 'classify'</em>, <em class="sig-param">use_index: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.ConvDatasetBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#socube.data.loading.DatasetBase" title="socube.data.loading.DatasetBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">socube.data.loading.DatasetBase</span></code></a></p>
+<p>Basical dataset designed for CNN.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dir</strong> (<em>str</em>) – Path to the directory containing dataset.</p></li>
+<li><p><strong>labels</strong> (<em>pd.DataFrame</em>) – Dataframe containing labels for each sample.</p></li>
+<li><p><strong>transform</strong> (<em>torch.nn.Module</em><em>, </em><em>default None</em>) – Transform to apply to each sample.</p></li>
+<li><p><strong>shuffle</strong> (<em>bool</em><em>, </em><em>default False</em>) – Whether to shuffle each class’s samples before splitting into batches.</p></li>
+<li><p><strong>seed</strong> (<em>int</em><em>, </em><em>default None</em>) – Random seed for shuffling.</p></li>
+<li><p><strong>k</strong> (<em>int</em><em>, </em><em>default 5</em>) – Number of folds for k-fold cross-validation.</p></li>
+<li><p><strong>task_type</strong> (<em>str</em><em>, </em><em>default &quot;classify&quot;</em>) – Type of task. Must be one of “classify”, “regress”.</p></li>
+<li><p><strong>use_index</strong> (<em>bool</em><em>, </em><em>default True</em>) – Whether to use the numeric index as the sample file name, such as “0.npy”,
+if <cite>False</cite>, then use the sample name in the labels as the sample file name,
+such as “sample_name.npy”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.getHeatColor">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">getHeatColor</code><span class="sig-paren">(</span><em class="sig-param">intensity: float</em>, <em class="sig-param">topColor: str</em>, <em class="sig-param">bottomColor: str = '#ffffff'</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.data.getHeatColor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculation of heat map color values based on intensity values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intensity</strong> (<em>float value</em>) – color intensity values between 0 and 1</p></li>
+<li><p><strong>topColor</strong> (<em>hexadecimal color string</em>) – Color value when intensity value is 1</p></li>
+<li><p><strong>bottomColor</strong> (<em>hexadecimal color string</em>) – Color value when intensity value is 0, default is white</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The hexadecimal color string corresponding to the intensity</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">getHeatColor</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;#ff0000&quot;</span><span class="p">)</span>
+<span class="go">&#39;#ff7f7f&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.convertHexToRGB">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">convertHexToRGB</code><span class="sig-paren">(</span><em class="sig-param">hex_color: str</em><span class="sig-paren">)</span> &#x2192; Tuple[int]<a class="headerlink" href="#socube.data.convertHexToRGB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert hexadecimal color strings to RGB tri-color integer tuples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hex_color</strong> (<em>hexadecimal color string</em><em>, </em><em>such as '#ff0000'</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>RGB tri-color integer tuples</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hexToRGB</span><span class="p">(</span><span class="s1">&#39;#ff0000&#39;</span><span class="p">)</span>
+<span class="go">(255, 0, 0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.convertRGBToHex">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">convertRGBToHex</code><span class="sig-paren">(</span><em class="sig-param">color: Tuple[int]</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#socube.data.convertRGBToHex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert RGB tricolor integer tuple to hexadecimal color string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> (<em>RGB tricolor integer tuple</em>) – such as (255, 0, 0)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>hexadecimal color string, such as ‘#ff0000’</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rgbToHex</span><span class="p">((</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="go">&#39;#ff0000&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.plotScatter">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">plotScatter</code><span class="sig-paren">(</span><em class="sig-param">data2d: pandas.core.frame.DataFrame, colormap: Dict[str, str], title: str, subtitle: str, filename: str = None, scatter_symbol: str = 'circle', width: int = 1000, height: int = 850, radius: int = 3, x_min: Optional[int] = None, y_min: Optional[int] = None, x_max: Optional[int] = None, y_max: Optional[int] = None, x_title: Optional[str] = None, y_title: Optional[str] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.plotScatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the scatter image of socube</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data2d</strong> (<em>pandas.DataFrame</em>) – The data to be plotted, with columns of x, y, label and subtype,
+if subtype is float, it regarded as intensity value, and the color will be
+calculated based on the intensity value.</p></li>
+<li><p><strong>colormap</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – The color map for the subtype, with key as subtype name and value
+as hexadecimal color string. If the subtype is float, colormap’s key
+should be ‘0’ and ‘1’, ‘0’ for low intensity color and ‘1’ for high intensity color.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title of the plot</p></li>
+<li><p><strong>subtitle</strong> (<em>str</em>) – The subtitle of the plot</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename of the plot, if None, the plot will not be saved. format is html and
+the filename extension will automatically be added and you should not add it.</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – The width of the plot, unit is pixel</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – The height of the plot, unit is pixel</p></li>
+<li><p><strong>radius</strong> (<em>int</em>) – The radius of the scatter point, unit is pixel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The plot object</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data2d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="s1">&#39;subtype&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">colormap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;#ff0000&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;#00ff00&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotScatter</span><span class="p">(</span><span class="n">data2d</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitle&#39;</span><span class="p">,</span> <span class="s1">&#39;test.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.plotGrid">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">plotGrid</code><span class="sig-paren">(</span><em class="sig-param">data2d: pandas.core.frame.DataFrame, colormap: Dict[str, str], shape: Tuple[int], title: str, subtitle: str, filename: str, width: int = 1000, height: int = 850</em><span class="sig-paren">)</span> &#x2192; highcharts.highcharts.highcharts.Highchart<a class="headerlink" href="#socube.data.plotGrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw socube’s Grid image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data2d</strong> (<em>pandas.DataFrame</em>) – The data to be plotted, with columns of x, y, label and subtype,
+if subtype is float, it regarded as intensity value, and the color will be
+calculated based on the intensity value.</p></li>
+<li><p><strong>colormap</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>str</em><em>]</em>) – The color map for the subtype, with key as subtype name and value
+as hexadecimal color string. If the subtype is float, colormap’s key
+should be ‘0’ and ‘1’, ‘0’ for low intensity color and ‘1’ for high intensity color.</p></li>
+<li><p><strong>shape</strong> (<em>Tuple</em><em>[</em><em>int</em><em>]</em>) – The shape of the grid, (row, col)</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title of the plot</p></li>
+<li><p><strong>subtitle</strong> (<em>str</em>) – The subtitle of the plot</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – The filename of the plot, if None, the plot will not be saved. format is html and
+the filename extension will automatically be added and you should not add it.</p></li>
+<li><p><strong>width</strong> (<em>int</em>) – The width of the plot, unit is pixel</p></li>
+<li><p><strong>height</strong> (<em>int</em>) – The height of the plot, unit is pixel</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>The plot object</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data2d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="s1">&#39;subtype&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">colormap</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;0&#39;</span><span class="p">:</span> <span class="s1">&#39;#ff0000&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span> <span class="s1">&#39;#00ff00&#39;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotGrid</span><span class="p">(</span><span class="n">data2d</span><span class="p">,</span> <span class="n">colormap</span><span class="p">,</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;subtitle&#39;</span><span class="p">,</span> <span class="s1">&#39;test.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="socube.data.plotAUC">
+<code class="sig-prename descclassname">socube.data.</code><code class="sig-name descname">plotAUC</code><span class="sig-paren">(</span><em class="sig-param">data: Dict[str, Tuple[Sequence]], title: str, xlabel: str, ylabel: str, file: Optional[str] = None, slash: int = 0</em><span class="sig-paren">)</span><a class="headerlink" href="#socube.data.plotAUC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a AUC curve</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Tuple</em><em>[</em><em>Sequence</em><em>]</em><em>]</em>) – The data to be plotted, with key as the name of the curve and value
+as the (x, y) data.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – The title of the plot</p></li>
+<li><p><strong>xlabel</strong> (<em>str</em>) – The xlabel of the plot</p></li>
+<li><p><strong>ylabel</strong> (<em>str</em>) – The ylabel of the plot</p></li>
+<li><p><strong>file</strong> (<em>str</em>) – The filename of the plot, if None, the plot will not be saved</p></li>
+<li><p><strong>slash</strong> (<em>int</em>) – if <cite>slash</cite> is positve, will plot a forward slash,
+if <cite>slash</cite> is negative, will plot a back slash.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;AUC&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]),</span> <span class="s1">&#39;AUC2&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">])}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plotAUC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;AUC&#39;</span><span class="p">,</span> <span class="s1">&#39;xlabel&#39;</span><span class="p">,</span> <span class="s1">&#39;ylabel&#39;</span><span class="p">,</span> <span class="s1">&#39;auc.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Zhang.H.N.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
