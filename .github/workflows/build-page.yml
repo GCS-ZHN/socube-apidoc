@@ -20,6 +20,7 @@ jobs:
         uses: ammaraskar/sphinx-action@master
         with:
           docs-folder: ${{ github.workspace }}
+          pre-build-command: cd socube && pip install . && cd ..
 
       - name: Get version
         id: version
